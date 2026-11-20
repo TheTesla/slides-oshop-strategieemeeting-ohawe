@@ -7,6 +7,8 @@ Infrastruktur und Transfer. Kein Technikvortrag — Problem, Idee, Anknüpfungsp
 - Folien: `ohawe-strategie.qmd` (Sprechnotizen in `::: {.notes}`)
 - Layout: `htwd-theme.css` (HTWD-Corporate-Design aus dem PPT-Master) + `ohawe.css`
 - Titelgrafik: `img/hero.svg` (eigene Zeichnung, keine Fotorechte zu klären)
+- Logos: HTWD aus dem PPT-Master, OSHOP von <https://www.oshop-network.de/> (Titelfolie,
+  Footer, Abschlussfolie)
 
 ## Rendern
 

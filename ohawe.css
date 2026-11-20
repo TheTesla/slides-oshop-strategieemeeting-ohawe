@@ -8,8 +8,8 @@
 }
 
 /* ---------- title slide ---------- */
-.title-slide .ts-photo { background: #EC6608; width: 52%; }
-.title-slide .ts-photo img { height: 100%; width: 100%; object-fit: cover; }
+.reveal .slides > section:first-child { height: 720px; }
+.title-slide .ts-photo { background: #EC6608; width: 52%; }.title-slide .ts-photo img { height: 100%; width: 100%; object-fit: cover; }
 .reveal .title-slide .ts-text { top: 24%; width: 46%; }
 .reveal .title-slide .ts-text h1 {
   font-size: 46px !important;
@@ -122,6 +122,23 @@
 
 /* ---------- footer ---------- */
 .reveal .footer-bar .footer-title { font-size: 11px; }
+
+/* ---------- agenda ---------- */
+.reveal .ag { margin-top: 0.3em; }
+.reveal .ag .row { display: flex; align-items: baseline; gap: 0.9em; padding: 0.45em 0; border-bottom: 1px solid #EAEAEA; }
+.reveal .ag .row:last-child { border-bottom: 0; }
+.reveal .ag .nr { color: #EC6608; font-weight: 700; width: 1.3em; flex: none; }
+.reveal .ag .txt { flex: 1; font-size: 0.92em; line-height: 1.25; }
+.reveal .ag .txt small { display: block; color: #7a7a7a; font-size: 0.72em; margin-top: 0.15em; }
+.reveal .ag .min { color: #EC6608; font-weight: 700; font-size: 0.78em; white-space: nowrap; }
+
+/* ---------- logos ---------- */
+.title-slide .ts-logo { display: flex; align-items: center; gap: 18px; }
+.title-slide .ts-logo .ts-logo-oshop { height: 26px; width: auto; }
+.reveal .footer-bar .footer-logo-oshop { height: 17px; width: auto; margin-right: 12px; }
+.reveal .partner-logos { display: flex; align-items: center; column-gap: 2.4em; margin-top: 1.2em; }
+.reveal .partner-logos img { height: 30px; width: auto; flex: 0 0 auto; }
+.reveal .partner-logos img:last-child { height: 24px; }
 
 /* ---------- contact block ---------- */
 .reveal .contact { font-size: 0.9em; line-height: 1.6; }

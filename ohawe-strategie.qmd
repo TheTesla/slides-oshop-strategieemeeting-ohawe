@@ -23,6 +23,7 @@ format:
 <div class="title-slide">
   <div class="ts-logo">
     <img src="logos/HTWD_logo_RGB_horizontal_color.svg" alt="HTWD" />
+    <img class="ts-logo-oshop" src="logos/oshop-logo.png" alt="OSHOP" />
   </div>
   <div class="ts-photo">
     <img src="img/hero.svg" alt="" />
@@ -47,32 +48,22 @@ Kurz ankommen: OHAWE ist ein Werkstattprojekt im Verbund T!Raum OSHOP, Laufzeit 
 
 ---
 
-## Worum es heute geht
+## Ablauf
 
 ::: {.eyebrow}
-Überblick in 10 Minuten
+10 Minuten Überblick, danach Diskussion
 :::
 
-::: {.steps}
-::: {.}
-**Das Problem:** Handwerk braucht Automatisierung, die es sich nicht leisten kann.
-:::
-::: {.}
-**Die Idee:** Offene Hardware macht Maschinen anpassbar und bezahlbar.
-:::
-::: {.}
-**Die Frage an Sie:** Was braucht es in Infrastruktur und Transfer, damit das trägt?
-:::
-:::
-
-<div style="height:0.7em"></div>
-
-::: {.small .muted}
-OHAWE steht am Anfang — Monat 9 von 36. Es gibt noch keine fertigen Maschinen, dafür eine klare Richtung und zwei Betriebe, die mitentwickeln.
+::: {.ag}
+<div class="row"><span class="nr">1</span><span class="txt"><strong>Warum das Handwerk Automatisierung braucht</strong><small>Zahlen und warum Standardlösungen nicht passen · Folie 3–4</small></span><span class="min">2 min</span></div>
+<div class="row"><span class="nr">2</span><span class="txt"><strong>Zwei Betriebe, zwei konkrete Probleme</strong><small>Silikonfuge im Fensterbau, Lackentfernung in der Restauration · Folie 5</small></span><span class="min">2 min</span></div>
+<div class="row"><span class="nr">3</span><span class="txt"><strong>Die Idee: offene Baupläne statt geschlossener Maschinen</strong><small>Was OHAWE baut und wie die Betriebe mitentwickeln · Folie 6–8</small></span><span class="min">3 min</span></div>
+<div class="row"><span class="nr">4</span><span class="txt"><strong>Was das für OSHOP bedeutet</strong><small>Anknüpfung an Infrastruktur und Transfer, Projektstand · Folie 9–10</small></span><span class="min">2 min</span></div>
+<div class="row"><span class="nr">5</span><span class="txt"><strong>Was wir von Ihnen brauchen</strong><small>Drei Fragen an das Plenum · Folie 11</small></span><span class="min">1 min</span></div>
 :::
 
 ::: {.notes}
-Ablauf transparent machen: drei Teile. Danach bleiben gut 20 Minuten Diskussion. Ehrlich sagen: wir sind in der Konzeptphase, nicht beim Ergebnis.
+Ablauf transparent machen, damit das Publikum weiß, wo es einsteigen kann. Danach bleiben gut 20 Minuten Diskussion. Ehrlich sagen: wir sind in der Konzeptphase, nicht beim Ergebnis — OHAWE steht in Monat 9 von 36, es gibt noch keine fertigen Maschinen.
 :::
 
 ---
@@ -202,6 +193,10 @@ Open Source Hardware
 
 ::: {.lead}
 Was bei Software seit 30 Jahren normal ist, übertragen wir auf Maschinen: Baupläne, Steuerung und Dokumentation werden **öffentlich** — unter einer offenen Lizenz.
+:::
+
+::: {.small .muted}
+Fremde Vorlagen nachzubauen war im Handwerk immer üblich — Musterbücher, Bauhüttenrisse, Maschinenbücher. Was fehlte, waren Maße, Rückfluss und Rechtssicherheit.
 :::
 
 ::: {.cards}
@@ -448,10 +443,15 @@ Assoziiert: Tischlerei König, Handwerkskammer Dresden
 :::
 :::
 
-<div style="height:0.9em"></div>
+<div style="height:0.7em"></div>
+
+::: {.partner-logos}
+<img src="logos/HTWD_logo_RGB_wordmark_color.svg" alt="HTW Dresden" />
+<img src="logos/oshop-logo.png" alt="OSHOP" />
+:::
 
 ::: {.tiny}
-Gefördert im Rahmen der Fördermaßnahme „T!Raum — TransferRäume für die Zukunft von Regionen" des BMBF im Programm „Innovation & Strukturwandel". Ergebnisse werden unter offener Lizenz veröffentlicht.
+Ein Werkstattprojekt im T!Raum OSHOP. Gefördert im Rahmen der Fördermaßnahme „T!Raum — TransferRäume für die Zukunft von Regionen" des BMBF im Programm „Innovation & Strukturwandel". Ergebnisse werden unter offener Lizenz veröffentlicht.
 :::
 
 ::: {.notes}
