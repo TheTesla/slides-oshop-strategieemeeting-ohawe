@@ -639,6 +639,18 @@ line-height: 1.35;
 
 .reveal .footer-bar .footer-title { font-size: 11px; }
 
+.reveal .chain { display: flex; align-items: stretch; gap: 0.35em; margin-top: 0.6em; }
+.reveal .chain .node {
+flex: 1;
+background: #F6F6F6;
+border-top: 4px solid #EC6608;
+padding: 0.7em 0.75em;
+font-size: 0.86em;
+line-height: 1.28;
+}
+.reveal .chain .node .n { display: block; color: #EC6608; font-weight: 700; margin-bottom: 0.25em; }
+.reveal .chain .arrow { align-self: center; color: #EC6608; font-weight: 700; font-size: 1.3em; }
+
 .reveal .ag { margin-top: 0.3em; }
 .reveal .ag .row { display: flex; align-items: baseline; gap: 0.9em; padding: 0.45em 0; border-bottom: 1px solid #EAEAEA; }
 .reveal .ag .row:last-child { border-bottom: 0; }
@@ -1178,9 +1190,9 @@ margin-right: 0; }
     <img role="img" aria-label src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5MDAgMTIwMCIgd2lkdGg9IjkwMCIgaGVpZ2h0PSIxMjAwIj4KICA8cmVjdCB3aWR0aD0iOTAwIiBoZWlnaHQ9IjEyMDAiIGZpbGw9IiNFQzY2MDgiLz4KICA8ZyBmaWxsPSJub25lIiBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+CiAgICA8IS0tIHRlY2huaWNhbCBncmlkIC0tPgogICAgPGcgc3Ryb2tlLXdpZHRoPSIxLjEiIG9wYWNpdHk9IjAuMjIiPgogICAgICA8cGF0aCBkPSJNMCAxNTBIOTAwTTAgMzAwSDkwME0wIDQ1MEg5MDBNMCA2MDBIOTAwTTAgNzUwSDkwME0wIDkwMEg5MDBNMCAxMDUwSDkwMCIvPgogICAgICA8cGF0aCBkPSJNMTUwIDBWMTIwME0zMDAgMFYxMjAwTTQ1MCAwVjEyMDBNNjAwIDBWMTIwME03NTAgMFYxMjAwIi8+CiAgICA8L2c+CgogICAgPCEtLSBtZWFzdXJlbWVudCBjcm9zc2VzIC0tPgogICAgPGcgc3Ryb2tlLXdpZHRoPSIyIiBvcGFjaXR5PSIwLjUiPgogICAgICA8cGF0aCBkPSJNOTYgOTZ2NDBNNzYgMTE2aDQwIi8+CiAgICAgIDxwYXRoIGQ9Ik04MDQgMTA4NHY0ME03ODQgMTEwNGg0MCIvPgogICAgPC9nPgoKICAgIDwhLS0gd2luZG93IGZyYW1lLCBzbGlnaHRseSByb3RhdGVkIC0tPgogICAgPGcgdHJhbnNmb3JtPSJyb3RhdGUoLTcgNDUwIDYwMCkiPgogICAgICA8cmVjdCB4PSIyNDAiIHk9IjMzMCIgd2lkdGg9IjQyMCIgaGVpZ2h0PSI1NDAiIHJ4PSI2IiBzdHJva2Utd2lkdGg9IjciIG9wYWNpdHk9IjAuOTUiLz4KICAgICAgPHJlY3QgeD0iMjY2IiB5PSIzNTYiIHdpZHRoPSIzNjgiIGhlaWdodD0iNDg4IiByeD0iMyIgc3Ryb2tlLXdpZHRoPSIzIiBvcGFjaXR5PSIwLjU1Ii8+CiAgICAgIDxwYXRoIGQ9Ik00NTAgMzU2Vjg0NCIgc3Ryb2tlLXdpZHRoPSI1IiBvcGFjaXR5PSIwLjgiLz4KICAgICAgPHBhdGggZD0iTTI2NiA2MDBINjM0IiBzdHJva2Utd2lkdGg9IjUiIG9wYWNpdHk9IjAuOCIvPgogICAgICA8IS0tIHNpbGljb25lIGJlYWQgYWxvbmcgdGhlIGlubmVyIHJlYmF0ZSAtLT4KICAgICAgPHBhdGggZD0iTTI4MiAzNzJxMCAtMTQgMTQgLTE0aDMzNnExNCAwIDE0IDE0djQ3MnEwIDE0IC0xNCAxNEgyOTZxLTE0IDAgLTE0IC0xNHoiCiAgICAgICAgICAgIHN0cm9rZS13aWR0aD0iMTEiIG9wYWNpdHk9IjAuOTUiLz4KICAgICAgPCEtLSBzYXNoIGhhbmRsZSAtLT4KICAgICAgPHBhdGggZD0iTTU3NiA1OTZoMzQiIHN0cm9rZS13aWR0aD0iNiIgb3BhY2l0eT0iMC45Ii8+CiAgICAgIDxjaXJjbGUgY3g9IjYxOCIgY3k9IjU5NiIgcj0iNyIgc3Ryb2tlLXdpZHRoPSI0IiBvcGFjaXR5PSIwLjkiLz4KICAgIDwvZz4KCiAgICA8IS0tIHRvb2wgcGF0aDogZGFzaGVkIGFyY3MgYXJvdW5kIHRoZSBmcmFtZSBjb3JuZXIgLS0+CiAgICA8ZyBzdHJva2Utd2lkdGg9IjIuNCIgc3Ryb2tlLWRhc2hhcnJheT0iMTIgMTQiIG9wYWNpdHk9IjAuODUiPgogICAgICA8cGF0aCBkPSJNMjUwIDMwMGExMjAgMTIwIDAgMCAxIDEyMCAtMTIwIi8+CiAgICAgIDxwYXRoIGQ9Ik01NjAgMjAwYTE0MCAxNDAgMCAwIDEgMTQwIDE0MCIvPgogICAgICA8cGF0aCBkPSJNNzQwIDg4MGExMzAgMTMwIDAgMCAxIC0xMzAgMTMwIi8+CiAgICA8L2c+CgogICAgPCEtLSBub3p6bGUgaGVhZCAtLT4KICAgIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDcwMCAzODApIiBzdHJva2Utd2lkdGg9IjQiIG9wYWNpdHk9IjAuOTUiPgogICAgICA8cGF0aCBkPSJNMCAwaC00NmEyNiAyNiAwIDAgMCAtMjYgMjZ2NDYiLz4KICAgICAgPHBhdGggZD0iTS03MiA3OGwtMTYgMjQgMTYgMjQgMTYgLTI0eiIgZmlsbD0iI0VDNjYwOCIvPgogICAgICA8cGF0aCBkPSJNLTg2IDEyNmMwIDI2IDE4IDQ0IDQwIDQ0Ii8+CiAgICA8L2c+CgogICAgPCEtLSBnZWFyIC0tPgogICAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTc4IDkwMCkiIHN0cm9rZS13aWR0aD0iNCIgb3BhY2l0eT0iMC44Ij4KICAgICAgPGNpcmNsZSBjeD0iMCIgY3k9IjAiIHI9IjM0Ii8+CiAgICAgIDxjaXJjbGUgY3g9IjAiIGN5PSIwIiByPSIxMyIvPgogICAgICA8ZyBzdHJva2Utd2lkdGg9IjciPgogICAgICAgIDxwYXRoIGQ9Ik0wIC00OHYtMTRNMCA0OHYxNE0tNDggMGgtMTRNNDggMGgxNCIvPgogICAgICAgIDxwYXRoIGQ9Ik0tMzQgLTM0bC0xMCAtMTBNMzQgMzRsMTAgMTBNLTM0IDM0bC0xMCAxME0zNCAtMzRsMTAgLTEwIi8+CiAgICAgIDwvZz4KICAgIDwvZz4KCiAgICA8IS0tIGNvcm5lciB0aWNrcyAtLT4KICAgIDxnIHN0cm9rZS13aWR0aD0iNCIgb3BhY2l0eT0iMC45Ij4KICAgICAgPHBhdGggZD0iTTYwIDYwaDcwTTYwIDYwdjcwIi8+CiAgICAgIDxwYXRoIGQ9Ik04NDAgMTE0MGgtNzBNODQwIDExNDB2LTcwIi8+CiAgICA8L2c+CiAgPC9nPgoKPC9zdmc+Cg==" alt>
   </div>
   <div class="ts-text">
-    <div class="ts-kicker">Werkstattprojekt im T!Raum OSHOP</div>
-    <h1>OHAWE</h1>
-    <div class="ts-sub">Open Source Hardware im Handwerk —<br>offene Baupläne statt geschlossener Maschinen</div>
+    <div class="ts-kicker">Werkstattprojekt OHAWE im T!Raum OSHOP</div>
+    <h1>Hightech im Handwerk</h1>
+    <div class="ts-sub">Wie Handwerksbetriebe durch flexible<br>Open-Source-Maschinen zukunftsfähig werden</div>
     <div class="ts-rule"></div>
   </div>
   <div class="ts-meta">
@@ -1203,30 +1215,45 @@ overflow: hidden!important;
 display:block!important;
 }</style></aside>
 </section>
-<section id="ablauf" class="slide level2 center">
-<h2>Ablauf</h2>
+<section id="worum-es-heute-geht" class="slide level2 center">
+<h2>Worum es heute geht</h2>
 <div class="eyebrow">
-<p>10 Minuten Überblick, danach Diskussion</p>
+<p>Der Bogen des Vortrags</p>
 </div>
-<div class="ag">
-<div class="row">
-<span class="nr">1</span><span class="txt"><strong>Warum das Handwerk Automatisierung braucht</strong><small>Zahlen und warum Standardlösungen nicht passen · Folie 3–4</small></span><span class="min">2 min</span>
+<div class="lead">
+<p>Fünf Schritte, zehn Minuten — danach Diskussion.</p>
 </div>
-<div class="row">
-<span class="nr">2</span><span class="txt"><strong>Zwei Betriebe, zwei konkrete Probleme</strong><small>Silikonfuge im Fensterbau, Lackentfernung in der Restauration · Folie 5</small></span><span class="min">2 min</span>
+<div class="chain">
+<div class="node">
+<span class="n">1</span>Fachkräftemangel und Kosten
 </div>
-<div class="row">
-<span class="nr">3</span><span class="txt"><strong>Die Idee: offene Baupläne statt geschlossener Maschinen</strong><small>Was OHAWE baut und wie die Betriebe mitentwickeln · Folie 6–8</small></span><span class="min">3 min</span>
+<div class="arrow">
+›
 </div>
-<div class="row">
-<span class="nr">4</span><span class="txt"><strong>Was das für OSHOP bedeutet</strong><small>Anknüpfung an Infrastruktur und Transfer, Projektstand · Folie 9–10</small></span><span class="min">2 min</span>
+<div class="node">
+<span class="n">2</span>Zwei Betriebe, zwei Probleme
 </div>
-<div class="row">
-<span class="nr">5</span><span class="txt"><strong>Was wir von Ihnen brauchen</strong><small>Drei Fragen an das Plenum · Folie 11</small></span><span class="min">1 min</span>
+<div class="arrow">
+›
+</div>
+<div class="node">
+<span class="n">3</span>Offene Baupläne statt Blackbox
+</div>
+<div class="arrow">
+›
+</div>
+<div class="node">
+<span class="n">4</span>Zwei Maschinen im Aufbau
+</div>
+<div class="arrow">
+›
+</div>
+<div class="node">
+<span class="n">5</span>Was wir von Ihnen brauchen
 </div>
 </div>
 <aside class="notes">
-<p>Ablauf transparent machen, damit das Publikum weiß, wo es einsteigen kann. Danach bleiben gut 20 Minuten Diskussion. Ehrlich sagen: wir sind in der Konzeptphase, nicht beim Ergebnis — OHAWE steht in Monat 9 von 36, es gibt noch keine fertigen Maschinen.</p>
+<p>Kein Inhaltsverzeichnis, sondern die Argumentkette des Vortrags — in 10 Minuten entlang dieser fünf Schritte, danach Diskussion (gut 20 min). Folienzuordnung: 3–4 Problem, 5 Betriebe, 6–8 Idee und Umsetzung, 9–10 Anschluss an OSHOP und Stand, 11 Fragen. Ehrlich sagen: OHAWE steht in Monat 9 von 36, es gibt noch keine fertigen Maschinen.</p>
 <style type="text/css">
 span.MJX_Assistive_MathML {
 position:absolute!important;

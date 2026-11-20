@@ -29,9 +29,9 @@ format:
     <img src="img/hero.svg" alt="" />
   </div>
   <div class="ts-text">
-    <div class="ts-kicker">Werkstattprojekt im T!Raum OSHOP</div>
-    <h1>OHAWE</h1>
-    <div class="ts-sub">Open Source Hardware im Handwerk —<br>offene Baupläne statt geschlossener Maschinen</div>
+    <div class="ts-kicker">Werkstattprojekt OHAWE im T!Raum OSHOP</div>
+    <h1>Hightech im Handwerk</h1>
+    <div class="ts-sub">Wie Handwerksbetriebe durch flexible<br>Open-Source-Maschinen zukunftsfähig werden</div>
     <div class="ts-rule"></div>
   </div>
   <div class="ts-meta">
@@ -48,22 +48,30 @@ Kurz ankommen: OHAWE ist ein Werkstattprojekt im Verbund T!Raum OSHOP, Laufzeit 
 
 ---
 
-## Ablauf
+## Worum es heute geht
 
 ::: {.eyebrow}
-10 Minuten Überblick, danach Diskussion
+Der Bogen des Vortrags
 :::
 
-::: {.ag}
-<div class="row"><span class="nr">1</span><span class="txt"><strong>Warum das Handwerk Automatisierung braucht</strong><small>Zahlen und warum Standardlösungen nicht passen · Folie 3–4</small></span><span class="min">2 min</span></div>
-<div class="row"><span class="nr">2</span><span class="txt"><strong>Zwei Betriebe, zwei konkrete Probleme</strong><small>Silikonfuge im Fensterbau, Lackentfernung in der Restauration · Folie 5</small></span><span class="min">2 min</span></div>
-<div class="row"><span class="nr">3</span><span class="txt"><strong>Die Idee: offene Baupläne statt geschlossener Maschinen</strong><small>Was OHAWE baut und wie die Betriebe mitentwickeln · Folie 6–8</small></span><span class="min">3 min</span></div>
-<div class="row"><span class="nr">4</span><span class="txt"><strong>Was das für OSHOP bedeutet</strong><small>Anknüpfung an Infrastruktur und Transfer, Projektstand · Folie 9–10</small></span><span class="min">2 min</span></div>
-<div class="row"><span class="nr">5</span><span class="txt"><strong>Was wir von Ihnen brauchen</strong><small>Drei Fragen an das Plenum · Folie 11</small></span><span class="min">1 min</span></div>
+::: {.lead}
+Fünf Schritte, zehn Minuten — danach Diskussion.
+:::
+
+::: {.chain}
+<div class="node"><span class="n">1</span>Fachkräftemangel und Kosten</div>
+<div class="arrow">›</div>
+<div class="node"><span class="n">2</span>Zwei Betriebe, zwei Probleme</div>
+<div class="arrow">›</div>
+<div class="node"><span class="n">3</span>Offene Baupläne statt Blackbox</div>
+<div class="arrow">›</div>
+<div class="node"><span class="n">4</span>Zwei Maschinen im Aufbau</div>
+<div class="arrow">›</div>
+<div class="node"><span class="n">5</span>Was wir von Ihnen brauchen</div>
 :::
 
 ::: {.notes}
-Ablauf transparent machen, damit das Publikum weiß, wo es einsteigen kann. Danach bleiben gut 20 Minuten Diskussion. Ehrlich sagen: wir sind in der Konzeptphase, nicht beim Ergebnis — OHAWE steht in Monat 9 von 36, es gibt noch keine fertigen Maschinen.
+Kein Inhaltsverzeichnis, sondern die Argumentkette des Vortrags — in 10 Minuten entlang dieser fünf Schritte, danach Diskussion (gut 20 min). Folienzuordnung: 3–4 Problem, 5 Betriebe, 6–8 Idee und Umsetzung, 9–10 Anschluss an OSHOP und Stand, 11 Fragen. Ehrlich sagen: OHAWE steht in Monat 9 von 36, es gibt noch keine fertigen Maschinen.
 :::
 
 ---
