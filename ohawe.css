@@ -124,7 +124,7 @@
 .reveal .footer-bar .footer-title { font-size: 11px; }
 
 /* ---------- argument chain (slide 2) ---------- */
-.reveal .chain { display: flex; align-items: stretch; gap: 0.35em; margin-top: 0.6em; }
+.reveal .chain { display: flex; align-items: stretch; gap: 0.55em; margin-top: 0.6em; }
 .reveal .chain .node {
   flex: 1;
   background: #F6F6F6;

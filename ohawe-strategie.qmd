@@ -29,9 +29,9 @@ format:
     <img src="img/hero.svg" alt="" />
   </div>
   <div class="ts-text">
-    <div class="ts-kicker">Werkstattprojekt OHAWE im T!Raum OSHOP</div>
-    <h1>Hightech im Handwerk</h1>
-    <div class="ts-sub">Wie Handwerksbetriebe durch flexible<br>Open-Source-Maschinen zukunftsfähig werden</div>
+    <div class="ts-kicker">Werkstattprojekt im T!Raum OSHOP</div>
+    <h1>OHAWE</h1>
+    <div class="ts-sub">Open Source Hardware im Handwerk —<br>offene Baupläne statt geschlossener Maschinen</div>
     <div class="ts-rule"></div>
   </div>
   <div class="ts-meta">
@@ -48,14 +48,14 @@ Kurz ankommen: OHAWE ist ein Werkstattprojekt im Verbund T!Raum OSHOP, Laufzeit 
 
 ---
 
-## Worum es heute geht
+## Hightech im Handwerk
 
 ::: {.eyebrow}
-Der Bogen des Vortrags
+Worum es heute geht
 :::
 
 ::: {.lead}
-Fünf Schritte, zehn Minuten — danach Diskussion.
+Wie Handwerksbetriebe durch flexible Open-Source-Maschinen zukunftsfähig werden — und was OSHOP dazu beiträgt.
 :::
 
 ::: {.chain}
