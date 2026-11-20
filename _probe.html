@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><style>html,body{margin:0}iframe{width:1280px;height:720px;border:0}</style></head>
+<body>
+<iframe id="f" src="ohawe-strategie.html?probe=2"></iframe>
+<pre id="out">pending</pre>
+<script>
+const f = document.getElementById('f');
+f.addEventListener('load', () => {
+  const d = f.contentDocument;
+  const w = f.contentWindow;
+  const secs = [...d.querySelectorAll('.reveal .slides > section')];
+  const res = [];
+  let i = 0;
+  function step() {
+    if (i >= secs.length) {
+      document.getElementById('out').textContent = JSON.stringify(res, null, 1);
+      return;
+    }
+    const s = secs[i];
+    w.Reveal.slide(i);
+    const r = s.getBoundingClientRect();
+    let maxRight = 0, maxBottom = 0;
+    s.querySelectorAll('*').forEach((el) => {
+      if (el.classList.contains('notes')) return;
+      const b = el.getBoundingClientRect();
+      if (b.width === 0 && b.height === 0) return;
+      if (b.height > 500) return;
+      maxRight = Math.max(maxRight, b.right);
+      maxBottom = Math.max(maxBottom, b.bottom);
+    });
+    res.push({
+      i, id: s.id || '(title)',
+      overY: s.scrollHeight - s.clientHeight,
+      overX: Math.round(maxRight - r.right),
+      overBottom: Math.round(maxBottom - (r.bottom - 64))
+    });
+    i++;
+    setTimeout(step, 60);
+  }
+  setTimeout(step, 1500);
+});
+</script>
+</body></html>
