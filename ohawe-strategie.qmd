@@ -31,13 +31,13 @@ format:
   <div class="ts-text">
     <div class="ts-kicker">Werkstattprojekt im T!Raum OSHOP</div>
     <h1>OHAWE</h1>
-    <div class="ts-sub">Open Source Hardware im Handwerk —<br>offene Baupläne statt geschlossener Maschinen</div>
+    <div class="ts-sub">Open Source Hardware im Handwerk —<br>Selbstsouveränität der deutschen Wirtschaft</div>
     <div class="ts-rule"></div>
   </div>
   <div class="ts-meta">
     <div class="meta-name">Stefan Helmert</div>
     <div class="meta-faculty">Fakultät Informatik / Mathematik, HTW Dresden</div>
-    <div class="meta-date">oSHOP-Strategiemeeting · November 2026</div>
+    <div class="meta-date">OSHOP-Strategiemeeting · November 2026</div>
   </div>
 </div>
 ```
@@ -55,28 +55,61 @@ Worum es heute geht
 :::
 
 ::: {.lead}
-Wie Handwerksbetriebe durch flexible Open-Source-Maschinen zukunftsfähig werden — und was OSHOP dazu beiträgt.
+Nicht nur Hammer und Feile: Handwerksbetriebe setzen moderne Fertigung ein — und zwar längst.
 :::
 
-::: {.chain}
-<div class="node"><span class="n">1</span>Fachkräftemangel und Kosten</div>
-<div class="arrow">›</div>
-<div class="node"><span class="n">2</span>Zwei Betriebe, zwei Probleme</div>
-<div class="arrow">›</div>
-<div class="node"><span class="n">3</span>Offene Baupläne statt Blackbox</div>
-<div class="arrow">›</div>
-<div class="node"><span class="n">4</span>Zwei Maschinen im Aufbau</div>
-<div class="arrow">›</div>
-<div class="node"><span class="n">5</span>Was wir von Ihnen brauchen</div>
+::: {.cases}
+::: {.hwcase}
+<span class="trade">Zahntechnik</span>
+<p>Ein Dentallabor mit zwölf Mitarbeitenden fertigt 80 % digital und druckt rund 300 Modelle im Monat.</p>
+<span class="src">Quelle: dental.formlabs.com, Anwenderbericht 2024</span>
+:::
+::: {.hwcase}
+<span class="trade">Tischlerei</span>
+<p>Tischlerei Müller (Duderstadt) rüstet 2025 auf 5-Achs-CNC und Fenster-CNC um — für Einzelteil-Komplettbearbeitung.</p>
+<span class="src">Quelle: bm-online.de, Reportage 2025</span>
+:::
+::: {.hwcase}
+<span class="trade">Metallbau</span>
+<p>Ein Leipziger Handwerksbetrieb investiert 2022 in ein 5-Achs-Bearbeitungszentrum — für Einzel- und Kleinserien.</p>
+<span class="src">Quelle: aischmann.de, Firmenchronik 2022</span>
+:::
+:::
+
+<div style="height:0.5em"></div>
+
+::: {.small}
+<strong>Für kleinere Handwerksbetriebe oft unattraktiv:</strong>
+:::
+
+::: {.reasons}
+<span>hohe Komplexität</span>
+<span>hohe Investitionskosten</span>
+<span>mangelnde Flexibilität</span>
+<span>fehlendes Fachwissen</span>
+<span>geringe Stückzahlen</span>
+:::
+
+::: {.chainline}
+Problem › zwei Betriebe › offene Baupläne › Maschinen › Ihre Sicht
 :::
 
 ::: {.notes}
-Kein Inhaltsverzeichnis, sondern die Argumentkette des Vortrags — in 10 Minuten entlang dieser fünf Schritte, danach Diskussion (gut 20 min). Folienzuordnung: 3–4 Problem, 5 Betriebe, 6–8 Idee und Umsetzung, 9–10 Anschluss an OSHOP und Stand, 11 Fragen. Ehrlich sagen: OHAWE steht in Monat 9 von 36, es gibt noch keine fertigen Maschinen.
+Kein Inhaltsverzeichnis, sondern die Argumentkette — in 10 Minuten entlang dieser fünf Schritte, danach Diskussion (gut 20 min). Folienzuordnung: 3 Krise, 4 Geschichte, 5 Betriebe, 6–8 Idee und Umsetzung, 9–10 Anschluss an OSHOP und Stand, 11 Fragen.
+
+Belege für die drei Beispiele, falls nachgefragt wird:
+- Zahntechnik: Kreimer Dentallabor, Anwenderbericht Formlabs 2024 — über 80 % der Fälle digital, rund 300 gedruckte Modelle pro Monat, zwölf Zahntechniker:innen.
+- Tischlerei: Tischlerei Müller, Duderstadt, bm-online.de 2025 — 5-Achs-BAZ Format4 Profit H350 plus 4-Achs-Fenster-CNC, CAD/CAM-Kette DDX, für Einzelteil-Komplettbearbeitung.
+- Metallbau: Aischmann Präzisionstechnik, Leipzig, Firmenchronik — 5-Achs-BAZ 2017 und 2022 (DMG Mori), Betrieb 1981 als Handwerksbetrieb gegründet.
+
+Backup-Zahlen für die Breite: 64 % der Tischlereien arbeiten mit CAD, 49 % mit CNC (Studie Digitalisierung im Tischlerhandwerk, 2019).
+
+Pointe: Die Technik ist vorhanden, sie skaliert aber nicht auf Einzelstücke — dort bricht sie ab. Ehrlich bleiben: OHAWE steht in Monat 9 von 36.
 :::
 
 ---
 
-## Das Handwerk steckt in der Automatisierungsfalle
+## Das Handwerk steckt in der Automatisierungskrise
 
 ::: {.eyebrow}
 Ausgangslage
@@ -104,7 +137,7 @@ Ausgangslage
 <div style="height:0.8em"></div>
 
 ::: {.quote}
-Wer weniger wird und weniger investieren kann, braucht Maschinen, die **mitwachsen** — nicht solche, die für die nächsten zehn Jahre festgeschrieben sind.
+Wer 5.000 Euro im Jahr investiert, kann keine Lösung kaufen, die zehn Jahre passen muss.
 :::
 
 ::: {.notes}
@@ -113,43 +146,56 @@ Zahlen aus der Vorhabensbeschreibung, Quellen: Sächsischer Handwerkstag, HWK Dr
 
 ---
 
-## Warum Standardlösungen nicht passen
+## Die Not machte erfinderisch
 
 ::: {.eyebrow}
-Das eigentliche Problem
+Erfunden in der Werkstatt, für die Werkstatt
 :::
 
-::: {.cards}
-::: {.card}
-<svg viewBox="0 0 32 32" fill="none" stroke="#EC6608" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3H5a2 2 0 0 0-2 2v12l14 14 12-12L17 3z"/><circle cx="10" cy="10" r="2.4"/></svg>
-<h3>Zu teuer</h3>
-<p>Investitionen rechnen sich bei Einzelstücken und Kleinserien nicht.</p>
-:::
-::: {.card}
-<svg viewBox="0 0 32 32" fill="none" stroke="#EC6608" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="26" height="20" rx="2"/><path d="M16 6v20M3 16h26M8 10h3M21 22h3"/></svg>
-<h3>Zu starr</h3>
-<p>Jede Fensterform, jedes Möbelstück ist anders. Die Maschine nicht.</p>
-:::
-::: {.card}
-<svg viewBox="0 0 32 32" fill="none" stroke="#EC6608" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="14" width="20" height="14" rx="2"/><path d="M11 14v-4a5 5 0 0 1 10 0v4"/><circle cx="16" cy="21" r="2"/></svg>
-<h3>Nicht anpassbar</h3>
-<p>Software, Schnittstellen, Ersatzteile: alles hängt am Hersteller.</p>
-:::
-::: {.card}
-<svg viewBox="0 0 32 32" fill="none" stroke="#EC6608" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="16" r="12"/><path d="M16 9v7l5 3"/></svg>
-<h3>Keine Zeit</h3>
-<p>Im Betrieb fehlt das Know-how, um Technik selbst zu bewerten.</p>
-:::
+::: {.hist}
+<div class="ev"><span class="yr">1886</span><span class="src"><strong>Rohrzange, 1892 der verstellbare Schraubenschlüssel</strong> — der Mechaniker Johan Petter Johansson baut beides in seiner Werkstatt, weil jede Mutter ein eigenes Werkzeug verlangte.<em>später Weltmarktartikel unter dem Namen Bahco</em></span></div>
+<div class="ev"><span class="yr">1958</span><span class="src"><strong>Spreizdübel</strong> — der Schlosser Artur Fischer feilt ihn in seiner Werkstatt, weil Schrauben im Mauerwerk nicht halten.<em>Patent DE 1 097 117</em></span></div>
+<div class="ev"><span class="yr">1958</span><span class="src"><strong>Kabelbinder</strong> — aus der Elektromontage, statt Binden mit Band und Draht.<em>heute in jedem Werkzeugkoffer</em></span></div>
 :::
 
-<div style="height:0.5em"></div>
+<div style="height:0.4em"></div>
 
-::: {.small .muted}
-Folge: Betriebe kaufen entweder zu groß ein — oder gar nicht. Und die Arbeit bleibt liegen.
+::: {.quote}
+Selbst bauen und selbst entwickeln war kein Notbehelf — es war **Selbstverständnis**.
 :::
 
 ::: {.notes}
-Nicht Technik scheitert hier, sondern Passung: Preis, Stückzahl, Abhängigkeit. Das schließt an das an, was Kolleg:innen in Transfer und Infrastruktur täglich sehen.
+Drei Beispiele, alle aus dem Betrieb heraus entwickelt: Johansson war Mechaniker in Enköping, Fischer gelernter Schlosser mit eigener Werkstatt im Schwarzwald. Das Muster ist immer dasselbe: ein konkretes Problem vor der Nase, keine Lösung auf dem Markt, also selbst bauen. Der Unterschied zu heute: damals wurde daraus ein Produkt hinter Patent und Werkstattmauer — OSH dreht das zurück. Kabelbinder: 1958 von Thomas & Betts für die Elektromontage entwickelt.
+:::
+
+---
+
+## Werkzeuge bauen, Vorlagen nachbauen
+
+::: {.eyebrow}
+Das ist keine neue Idee — nur eine vergessene
+:::
+
+::: {.hist}
+<div class="ev"><span class="yr">~1240</span><span class="src"><strong>Bauhüttenbuch</strong> des Villard de Honnecourt — Risse und Konstruktionen, zwischen Bauhütten weitergegeben.<em>Skizzenbuch, kein Bauplan</em></span></div>
+<div class="ev"><span class="yr">1588</span><span class="src"><strong>Ramelli</strong> veröffentlicht 195 Maschinenentwürfe — zum Nachbau, für Bauherren und Handwerker.<em>Kupferstiche ohne Maße</em></span></div>
+<div class="ev"><span class="yr">1731</span><span class="src"><strong>Schübler</strong> schreibt Zimmermannskunst „denen Zimmer-Leuten zum besten" — mit Tafeln für Dächer und Hängewerke.<em>Lehrbuch mit Zielgruppe Handwerk</em></span></div>
+:::
+
+<img class="hist-strip" src="img/tools.jpg" alt="Zimmerleute und Tischler mit ihrem Werkzeug" />
+
+::: {.tiny}
+Zimmerleute und Tischler mit eigenem Werkzeug. Tafel aus „Arts et Métiers", 19. Jahrhundert (NYPL, gemeinfrei).
+:::
+
+<div style="height:0.35em"></div>
+
+::: {.quote}
+Open Source Hardware hat eine lange Tradition. Was fehlte: **Maße, Rückfluss, Lizenz.**
+:::
+
+::: {.notes}
+Eigene Werkzeuge, Schablonen und Vorrichtungen waren Werkstattalltag: Für Einzelstücke gab es nichts von der Stange, und Geld war knapp. Veröffentlicht wurde trotzdem — Muster- und Modelbücher, Bauhüttenrisse, Maschinenbücher, Zimmermannsbücher. Genau das ist die Wurzel, auf die OSH sich beruft. Der Unterschied liegt nicht in der Haltung, sondern in drei fehlenden Dingen: nachbaubare Daten, ein Weg für Verbesserungen zurück, Rechtssicherheit. Nicht behaupten, Wissen sei nur mündlich gewesen.
 :::
 
 ---
@@ -201,10 +247,6 @@ Open Source Hardware
 
 ::: {.lead}
 Was bei Software seit 30 Jahren normal ist, übertragen wir auf Maschinen: Baupläne, Steuerung und Dokumentation werden **öffentlich** — unter einer offenen Lizenz.
-:::
-
-::: {.small .muted}
-Fremde Vorlagen nachzubauen war im Handwerk immer üblich — Musterbücher, Bauhüttenrisse, Maschinenbücher. Was fehlte, waren Maße, Rückfluss und Rechtssicherheit.
 :::
 
 ::: {.cards}

@@ -1,7 +1,7 @@
-# OHAWE — Überblick für das oSHOP-Strategiemeeting
+# OHAWE — Überblick für das OSHOP-Strategiemeeting
 
 Quarto-/reveal.js-Folien (Deutsch) zum Werkstattprojekt **OHAWE** (Open Source Hardware im
-Handwerk, T!Raum OSHOP). Zielgruppe: Wissenschaftler:innen der oSHOP-Lenkungsbereiche
+Handwerk, T!Raum OSHOP). Zielgruppe: Wissenschaftler:innen der OSHOP-Lenkungsbereiche
 Infrastruktur und Transfer. Kein Technikvortrag — Problem, Idee, Anknüpfungspunkte, Stand.
 
 - Folien: `ohawe-strategie.qmd` (Sprechnotizen in `::: {.notes}`)
