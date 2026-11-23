@@ -668,7 +668,7 @@ line-height: 1.35;
 
 .reveal .shots { display: flex; gap: 0.6em; }
 .reveal .shots figure { flex: 1; margin: 0; }
-.reveal .shots img { width: 100% !important; height: 190px !important; max-height: none !important; object-fit: cover; display: block; }
+.reveal .shots img { width: 100% !important; height: 250px !important; max-height: none !important; object-fit: contain; display: block; }
 .reveal .shots .cap { display: block; font-size: 0.68em; color: #444; margin-top: 0.3em; }
 
 .reveal .answer { margin-top: 0.55em; border-left: 4px solid #EC6608; background: #FFF6EE; padding: 0.4em 0.6em; font-size: 0.78em; line-height: 1.3; }
@@ -1544,7 +1544,7 @@ display:block!important;
 <p>KI findet den Fensterrahmen</p>
 </div>
 <div class="lead">
-<p>Vor dem ersten Weg muss die Maschine wissen, wo der Rahmen anfängt: Wir erproben offene Segmentierungsmodelle an eigenen Aufnahmen.</p>
+<p>Die Maschine muss den Rahmen finden, bevor sie fährt: Wir erproben offene Segmentierungsmodelle.</p>
 </div>
 <div class="shots">
 <figure>
@@ -1561,7 +1561,7 @@ display:block!important;
 
 </div>
 <div class="quote">
-<p>Noch Laborstand — aber der Schritt, an dem aus einer Werkzeugidee eine Maschine wird.</p>
+<p>Noch Laborstand — aber der Schritt von der Werkzeugidee zur Maschine.</p>
 </div>
 <aside class="notes">
 <p>Zwischenstand aus der Software: Wir testen offene Modelle (Grounding DINO + SAM 2, SegGPT) darauf, den Fensterrahmen in der Aufnahme zu finden. Das ist die Voraussetzung für Bahnplanung und Dosierung. Ehrlich sagen: keine belastbaren Kennzahlen, das ist ein früher Versuch.</p>

@@ -157,7 +157,7 @@
 /* ---------- screenshot row ---------- */
 .reveal .shots { display: flex; gap: 0.6em; }
 .reveal .shots figure { flex: 1; margin: 0; }
-.reveal .shots img { width: 100% !important; height: 190px !important; max-height: none !important; object-fit: cover; display: block; }
+.reveal .shots img { width: 100% !important; height: 250px !important; max-height: none !important; object-fit: contain; display: block; }
 .reveal .shots .cap { display: block; font-size: 0.68em; color: #444; margin-top: 0.3em; }
 
 /* ---------- answer line ---------- */
