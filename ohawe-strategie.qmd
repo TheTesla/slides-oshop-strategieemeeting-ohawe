@@ -137,7 +137,7 @@ Ausgangslage
 <div style="height:0.8em"></div>
 
 ::: {.quote}
-Wer 5.000 Euro im Jahr investiert, kann keine Lösung kaufen, die zehn Jahre passen muss.
+Das Handwerk braucht unsere Unterstützung.
 :::
 
 ::: {.notes}
@@ -161,7 +161,7 @@ Erfunden in der Werkstatt, für die Werkstatt
 <div style="height:0.4em"></div>
 
 ::: {.quote}
-Selbst bauen und selbst entwickeln war kein Notbehelf — es war **Selbstverständnis**.
+Selbst bauen und selbst entwickeln war kein reiner Notbehelf — es war **Selbstverständnis**.
 :::
 
 ::: {.notes}
