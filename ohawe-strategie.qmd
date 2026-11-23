@@ -211,25 +211,23 @@ Eigene Werkzeuge, Schablonen und Vorrichtungen waren Werkstattalltag: Für Einze
 Was OHAWE erreichen will
 :::
 
-::: {.steps}
-::: {.}
-**Zwei Maschinen, die den Betrieben wirklich helfen:** Versiegelung im Fensterbau, Oberflächenbehandlung in der Restauration.
-:::
-::: {.}
-**Betriebe als Mitentwickelnde:** Anforderungen, Tests und Änderungen laufen über die Betriebe — nicht an ihnen vorbei.
-:::
-::: {.}
-**Vollständig offen dokumentiert:** Baupläne, Steuerung, Risikobeurteilung, Bedienungsanleitung unter offener Lizenz.
-:::
-::: {.}
-**Wissen zurück in OSHOP:** Design-Guide, Repo-Standards und Transferformate werden am harten Fall geprüft und geschärft.
-:::
+::: {.lead}
+Ziel ist **OSH-Transferkompetenz im Handwerk**: Betriebe sollen selbst finden, prüfen, nachbauen, anpassen und veröffentlichen können.
 :::
 
-<div style="height:0.6em"></div>
+::: {.goals}
+- Lock-In-Effekte erkennen und vermeiden
+- Anwendung von OSH-Entwurfsmustern und -Paradigmen, um Barrieren zu senken
+- eigenständige Recherche geeigneter OSH-Teillösungen
+- Nachbau und Anpassung an die eigene Werkstatt
+- Veröffentlichung der eigenen Lösungen unter offener Lizenz
+- Kooperation mit anderen Handwerksbetrieben, Hochschulen und OSH-Community
+:::
+
+<div style="height:0.5em"></div>
 
 ::: {.quote}
-Nicht drei Jahre Sondermaschine — sondern ein **nachbaubarer Baukasten** für Betriebe, die ähnliche Arbeit haben.
+Nicht drei Jahre Sondermaschine — sondern ein **nachbaubarer Baukasten** und die Fähigkeit, ihn zu nutzen.
 :::
 
 ::: {.notes}
@@ -238,10 +236,10 @@ Ziele aus der Vorhabensbeschreibung, für dieses Publikum übersetzt: Es geht ni
 
 ---
 
-## Zwei reale Probleme, zwei Betriebe
+## Zwei Betriebe, zwei Aufgaben
 
 ::: {.eyebrow}
-Worum es konkret geht
+Und was wir dafür bauen
 :::
 
 ::: {.two}
@@ -249,259 +247,36 @@ Worum es konkret geht
 <h3>Fensterbau König</h3>
 ::: {.small}
 - Silikonfuge an Holzfenstern wird von Hand gezogen
-- monoton, körperlich belastend, fehleranfällig
-- jede Größe und Form braucht eine neue Handbewegung
+- monoton, fehleranfällig, jede Form braucht eine neue Handbewegung
 - Marktlösungen sind zu unflexibel und zu teuer
+:::
+
+::: {.answer}
+**Unsere Antwort:** ein Werkzeug, das Dichtstoff dosiert aufträgt und abzieht — auf Basis der vorhandenen Maschine.
 :::
 :::
 ::: {.pane}
 <h3>Restauration Pohl</h3>
 ::: {.small}
 - alte Lackschichten werden von Hand abgetragen
-- Grundmaterial darf dabei nicht verletzt werden
-- Staub und Dämpfe: Arbeits- und Gesundheitsschutz
-- Erfahrungswissen ist knapp und geht in Rente
-:::
-:::
+- das Grundmaterial darf dabei nicht verletzt werden
+- Staub und Dämpfe belasten, Erfahrungswissen geht in Rente
 :::
 
-<div style="height:0.6em"></div>
-
-::: {.tiny}
-Beide Betriebe sind Projektpartner — nicht nur Anwender. König stellt die vorhandene Maschine, Pohl liefert Bauteile und Testprogramme.
-:::
-
-::: {.notes}
-Zwei Beispiele, die jede:r im Raum versteht. Wichtig: das sind keine erfundenen Szenarien, sondern die Betriebe sitzen mit im Projekt. Fa. König ist assoziierter Partner, Pohl ist Verbundpartner mit Eigenanteil.
-:::
-
----
-
-## Die Idee: offene Baupläne statt geschlossener Maschinen
-
-::: {.eyebrow}
-Open Source Hardware
-:::
-
-::: {.lead}
-Was bei Software seit 30 Jahren normal ist, übertragen wir auf Maschinen: Baupläne, Steuerung und Dokumentation werden **öffentlich** — unter einer offenen Lizenz.
-:::
-
-::: {.cards}
-::: {.card .plain}
-<h3>Studieren</h3>
-<p>Sehen, wie die Maschine funktioniert. Ohne NDA und Vertriebsprospekt.</p>
-:::
-::: {.card .plain}
-<h3>Verändern</h3>
-<p>An die eigene Werkstatt anpassen — nicht an den Hersteller.</p>
-:::
-::: {.card .plain}
-<h3>Weitergeben</h3>
-<p>Verbesserungen kommen zurück. Der nächste Betrieb startet besser.</p>
-:::
-::: {.card .plain}
-<h3>Herstellen</h3>
-<p>Nachbauen, reparieren, erweitern: ohne Freigabe von oben.</p>
-:::
-:::
-
-<div style="height:0.5em"></div>
-
-::: {.quote}
-Kein Vendor-Lock-in, keine Sondermaschine, die niemand warten kann. **Die Werkstatt behält die Maschine.**
-:::
-
-::: {.notes}
-Das ist der Kerngedanke. OSH ist keine Bastelromantik, sondern eine Beschaffungsstrategie: weg von der Blackbox, hin zu etwas, das der Betrieb beherrscht. Lizenz: CERN-OHL. Rückfluss in bestehende OSH-Projekte ist Teil des Arbeitsplans (AP 6).
-:::
-
----
-
-## Was OHAWE baut
-
-::: {.eyebrow}
-Zwei Demonstratoren im Versuchsfeld der HTW Dresden
-:::
-
-::: {.two}
-::: {.pane}
-<h3>1 · Versiegelungsmaschine</h3>
-::: {.small}
-Werkzeug, das Silikondichtstoff dosiert aufträgt und abzieht.
-:::
-::: {.small}
-- Basis: vorhandene Maschine des Betriebs, offen nachgerüstet
-- Bedienoberfläche für Menschen, die keine CNC programmieren
-- Ziel: gleichbleibende Fugengüte bei allen Fensterformen
-:::
-:::
-::: {.pane}
-<h3>2 · CNC-Oberflächenbehandlung</h3>
-::: {.small}
-Fräse auf OSH-Basis, die alte Beschichtungen abträgt.
-:::
-::: {.small}
-- automatischer Werkzeugwechsel für unterschiedliche Aufgaben
-- Werkstück wird vermessen, Bearbeitung geplant
-- Ziel: Restauration ohne Schleifstaub von Hand
-:::
-:::
-:::
-
-<div style="height:0.5em"></div>
-
-::: {.tiny}
-Beides entsteht zunächst im Labor, wird dort erprobt und erst dann in den Betrieben in Betrieb genommen.
-:::
-
-::: {.notes}
-Überblick, keine Konstruktionsdetails. Punkt: wir entwickeln keine Maschine von der Stange, sondern zwei sehr unterschiedliche Anwendungen — Retrofit und Neubau. Genau daran lernen wir, was übertragbar ist.
-:::
-
----
-
-## Wie wir arbeiten: die Betriebe entwickeln mit
-
-::: {.eyebrow}
-Methode
-:::
-
-::: {.steps}
-::: {.}
-**Anforderungen aufnehmen** — vor Ort, im Betrieb, mit den Menschen, die die Arbeit machen.
-:::
-::: {.}
-**Gemeinsam konstruieren** — offene Werkzeugkette, kurze Wege, CAD-Modelle der Partner.
-:::
-::: {.}
-**Im Betrieb erproben** — Testreihen mit echten Werkstücken, dokumentiert als Ticket.
-:::
-::: {.}
-**Offen dokumentieren** — Baupläne, Risikobeurteilung, Bedienungsanleitung, Lizenz.
-:::
-:::
-
-<div style="height:0.45em"></div>
-
-::: {.quote}
-Betriebe werden zu **Mitentwickelnden** — sie lernen Git, Issues und Versionierung.
-:::
-
-::: {.notes}
-Hier steckt der Transferkern: nicht "wir bauen für euch", sondern Befähigung. Genau das ist auch die Schnittstelle zum Lenkungsbereich Transfer. Und es ist der Punkt, an dem die Betriebe merken, dass OSH ihnen mehr gibt als eine Maschine.
-:::
-
----
-
-## Was OHAWE für OSHOP bedeutet
-
-::: {.eyebrow}
-Anknüpfungspunkte im Verbund
-:::
-
-::: {.two}
-::: {.pane}
-<h3>Infrastruktur</h3>
-::: {.small}
-- OSH-Design-Guide wird im Feld angewendet und dabei geschärft
-- Repository-Struktur, Lizenz- und Dokumentationsstandards werden real erprobt
-- Zertifizierung über Community-Review (AP 6.1) bringt Prüfmaßstäbe hervor
-- Lücke, die wir finden: brauchbare OSH-Roboter- und CNC-Kinematiken
-:::
-:::
-::: {.pane}
-<h3>Transfer</h3>
-::: {.small}
-- Handwerkskammer Dresden als Multiplikator in ~21.000 Betriebe
-- Werkstatt- und Schulungsformate: Git, Issues, offene Beschaffung
-- Vorbild für andere Gewerke mit gleichen Engpässen
-- Betriebe als Lernort — nicht als Empfänger
+::: {.answer}
+**Unsere Antwort:** eine Fräse, die das Werkstück vermisst und mit wechselnden Werkzeugen arbeitet.
 :::
 :::
 :::
 
 <div style="height:0.4em"></div>
 
-::: {.quote}
-OHAWE ist der **Härtetest** für die Werkzeuge, die im Verbund entstehen.
+::: {.tiny}
+Beide Betriebe sind Projektpartner, nicht Anwender. Gebaut und erprobt wird im Versuchsfeld der HTW Dresden, danach gehen die Maschinen in die Betriebe.
 :::
 
 ::: {.notes}
-Kernbotschaft an dieses Publikum: wir sind Abnehmer eurer Infrastruktur und liefern zurück, was in der Praxis hält oder bricht. Wäre schön, wenn daraus ein gemeinsames Format wird.
-:::
-
----
-
-## Wo wir stehen
-
-::: {.eyebrow}
-Projektstand, Monat 9 von 36 — und was als Nächstes kommt
-:::
-
-::: {.tl}
-::: {.seg .done style="flex:6"}
-<strong>Anforderungen</strong>
-<em>Monat 1–6</em>
-:::
-::: {.seg .now style="flex:5"}
-<strong>Maschinenkonzepte</strong>
-<em>Monat 7–11 · wir sind hier</em>
-:::
-::: {.seg style="flex:16"}
-<strong>Aufbau der Demonstratoren</strong>
-<em>Monat 12–27</em>
-:::
-::: {.seg style="flex:5"}
-<strong>Erprobung</strong>
-<em>Monat 28–32</em>
-:::
-::: {.seg style="flex:3"}
-<strong>Dokumentation</strong>
-<em>Monat 31–33</em>
-:::
-::: {.seg style="flex:3"}
-<strong>Zertifizierung, Rückfluss</strong>
-<em>Monat 34–36</em>
-:::
-:::
-
-::: {.tl-legend}
-<span><i style="background:#111"></i>abgeschlossen</span>
-<span><i style="background:#EC6608"></i>aktuell</span>
-<span><i style="background:#DCDCDC"></i>geplant</span>
-:::
-
-::: {.notes}
-Ehrlich zum Stand: wir sind in der Konzeptphase, Meilenstein M1 liegt in Monat 11. Nichts davon ist fertig. Was fehlt, sind genau die Entscheidungen, die heute im Raum sitzen. Abgeschlossen: Ist-Aufnahme, Anwendungsprofile, Recherche. Aktuell: Bewertung der Designs und Entscheidung über die Basis.
-:::
-
----
-
-## Was wir heute von Ihnen brauchen
-
-::: {.eyebrow}
-Diskussion
-:::
-
-::: {.lead}
-Drei Fragen, bei denen Ihre Sicht aus Infrastruktur und Transfer direkt in das Projekt einfließt:
-:::
-
-<ol class="q">
-<li><strong>Welche freien Designs tragen?</strong> Wo finden wir brauchbare OSH-Kinematiken — und wo lohnt Eigenentwicklung mehr?</li>
-<li><strong>Wie muss der Design-Guide aussehen,</strong> damit ein Handwerksbetrieb ohne Entwicklungsabteilung ihn nutzen kann?</li>
-<li><strong>Welche Transferwege über die Handwerkskammer</strong> sind realistisch — und was brauchen Sie dafür von uns?</li>
-</ol>
-
-<div style="height:0.6em"></div>
-
-::: {.quote}
-OHAWE ist kein Sonderfall. Wenn es hier funktioniert, funktioniert es auch in anderen Gewerken.
-:::
-
-::: {.notes}
-Zeit für Diskussion. Fragen bewusst offen und anschlussfähig: die Antworten sind für uns Entscheidungsgrundlage für AP 2 und 3.
+Überblick, keine Konstruktionsdetails. Punkt: wir entwickeln keine Maschine von der Stange, sondern zwei sehr unterschiedliche Anwendungen — Retrofit und Neubau. Genau daran lernen wir, was übertragbar ist.
 :::
 
 ---
