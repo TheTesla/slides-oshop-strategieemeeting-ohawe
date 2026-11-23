@@ -332,7 +332,7 @@ Auf einen Blick
 | Partner | Rolle im Projekt |
 |---|---|
 | **HTW Dresden**, Professur Informationsmanagement | Koordination, FuE, Aufbau und Erprobung der Demonstratoren, Dokumentation, Zertifizierung |
-| **Tischlerei Pohl**, Ebersbach-Neugersdorf | Anforderungen an Lackentfernung, CAD/CAM-Modelle und Testprogramme, Gefährdungsbeurteilung |
+| **Tischlerei Pohl**, Ebersbach-Neugersdorf | Anforderungen an Lackentfernung, Versuchsergebnisse/Parameter Laser-Lackentfernung, Gefährdungsbeurteilung |
 | **Tischlerei König**, Rammenau | Fensterbau, stellt die vorhandene Maschine, Anforderungsmanagement, Erprobung (assoziiert) |
 | **Handwerkskammer Dresden** | Multiplikator in ~21.000 Betriebe, gemeinsame Veranstaltungen mit OSHOP |
 
