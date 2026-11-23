@@ -309,6 +309,40 @@ Zwischenstand aus der Software: Wir testen offene Modelle (Grounding DINO + SAM 
 
 ---
 
+## Endergebnis (Bsp. Pohl, Laserlackentfernung)
+
+::: {.eyebrow}
+So soll der Arbeitsplatz aussehen
+:::
+
+::: {.two .hist-split .img-major}
+::: {.pane}
+::: {.small}
+- geschlossene Sicherheitszelle mit getöntem Laserschutzglas
+- direkte Absaugung am Bearbeitungskopf, mehrstufige Filterung
+- Lackschicht abtragen, ohne das Holz zu verletzen
+- Bedienung über ein Panel, Werkstück wird vorher vermessen
+:::
+
+::: {.quote}
+Kein Schleifstaub, keine Handarbeit über Stunden — und ein Arbeitsplatz, den auch Ungelernte bedienen können.
+:::
+:::
+::: {.pane}
+<img class="shot-img" src="img/Lasergestützte Fensterrahmen-Aufbereitung.png" alt="Darstellung einer gekapselten Laseranlage mit Sicherheitszelle, Absaugung und Filter" />
+
+::: {.tiny}
+Konzeptdarstellung der Anlage — Stand vor dem Aufbau.
+:::
+:::
+:::
+
+::: {.notes}
+Das ist die Zielvision für den Fall Pohl, bewusst als Darstellung gekennzeichnet. Wichtig für das Publikum: Sicherheit und Absaugung sind keine Anhängsel, sondern der Kern der Konstruktion — ohne Kapselung und Filter ist Laserentlackung im Betrieb nicht arbeitsplatztauglich.
+:::
+
+---
+
 ## Danke — Diskussion
 
 ::: {.two}

@@ -151,8 +151,14 @@
 .reveal .two.hist-split { gap: 1.5em; }
 .reveal .two.hist-split > .pane:first-child { flex: 1.25; }
 .reveal .two.hist-split > .pane:last-child { flex: 1; }
+.reveal .two.hist-split.img-major > .pane:first-child { flex: 1; }
+.reveal .two.hist-split.img-major > .pane:last-child { flex: 1.15; }
 .reveal img.hist-img,
 .reveal img.hist-img.r-stretch { width: 100% !important; height: 400px !important; max-height: none !important; object-fit: cover; object-position: center; display: block; }
+
+/* ---------- single shot ---------- */
+.reveal img.shot-img,
+.reveal img.shot-img.r-stretch { width: 100% !important; height: 430px !important; max-height: none !important; object-fit: contain; display: block; }
 
 /* ---------- screenshot row ---------- */
 .reveal .shots { display: flex; gap: 0.6em; }
