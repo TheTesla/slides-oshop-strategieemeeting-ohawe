@@ -264,7 +264,7 @@ Und was wir dafür bauen
 :::
 
 ::: {.answer}
-**Unsere Antwort:** eine Fräse, die das Werkstück vermisst und mit wechselnden Werkzeugen arbeitet.
+<strong>Unsere Antwort:</strong> eine CNC-Maschine, die das Werkstück automatisch vermisst und den Lack mit Laser entfernt.
 :::
 :::
 :::
