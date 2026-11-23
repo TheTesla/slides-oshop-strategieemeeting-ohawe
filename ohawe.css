@@ -148,6 +148,12 @@
 .reveal img.hist-strip,
 .reveal img.hist-strip.r-stretch { width: 100% !important; height: 168px !important; max-height: none !important; object-fit: cover; object-position: center 32%; display: block; margin-top: 0.45em; }
 
+.reveal .two.hist-split { gap: 1.5em; }
+.reveal .two.hist-split > .pane:first-child { flex: 1.25; }
+.reveal .two.hist-split > .pane:last-child { flex: 1; }
+.reveal img.hist-img,
+.reveal img.hist-img.r-stretch { width: 100% !important; height: 400px !important; max-height: none !important; object-fit: cover; object-position: center 16%; display: block; }
+
 /* ---------- argument chain (slide 2) ---------- */
 .reveal .chain { display: flex; align-items: stretch; gap: 0.55em; margin-top: 0.6em; }
 .reveal .chain .node {
@@ -192,8 +198,10 @@
   .reveal .two .pane > img { height: 165px; max-height: none; }
   .reveal img.hist-strip,
   .reveal img.hist-strip.r-stretch { height: 118px !important; }
-  .reveal .two { display: block !important; }
-  .reveal .two .pane + .pane { margin-top: 0.5em; }
+  .reveal img.hist-img,
+  .reveal img.hist-img.r-stretch { height: 250px !important; }
+  .reveal .two:not(.hist-split) { display: block !important; }
+  .reveal .two:not(.hist-split) .pane + .pane { margin-top: 0.5em; }
   .reveal .hist .ev { padding: 0.28em 0; }
   .reveal .hist .src { font-size: 0.78em; }
   .reveal .slides > section:first-child { padding: 0 !important; }

@@ -176,26 +176,64 @@ Drei Beispiele, alle aus dem Betrieb heraus entwickelt: Johansson war Mechaniker
 Das ist keine neue Idee — nur eine vergessene
 :::
 
+::: {.two .hist-split}
+::: {.pane}
 ::: {.hist}
 <div class="ev"><span class="yr">~1240</span><span class="src"><strong>Bauhüttenbuch</strong> des Villard de Honnecourt — Risse und Konstruktionen, zwischen Bauhütten weitergegeben.<em>Skizzenbuch, kein Bauplan</em></span></div>
 <div class="ev"><span class="yr">1588</span><span class="src"><strong>Ramelli</strong> veröffentlicht 195 Maschinenentwürfe — zum Nachbau, für Bauherren und Handwerker.<em>Kupferstiche ohne Maße</em></span></div>
 <div class="ev"><span class="yr">1731</span><span class="src"><strong>Schübler</strong> schreibt Zimmermannskunst „denen Zimmer-Leuten zum besten" — mit Tafeln für Dächer und Hängewerke.<em>Lehrbuch mit Zielgruppe Handwerk</em></span></div>
 :::
 
-<img class="hist-strip" src="img/tools.jpg" alt="Zimmerleute und Tischler mit ihrem Werkzeug" />
-
-::: {.tiny}
-Zimmerleute und Tischler mit eigenem Werkzeug. Tafel aus „Arts et Métiers", 19. Jahrhundert (NYPL, gemeinfrei).
-:::
-
-<div style="height:0.35em"></div>
+<div style="height:0.5em"></div>
 
 ::: {.quote}
 Open Source Hardware hat eine lange Tradition. Was fehlte: **Maße, Rückfluss, Lizenz.**
 :::
+:::
+::: {.pane}
+<img class="hist-img" src="img/tools.jpg" alt="Zimmerleute und Tischler mit ihrem Werkzeug" />
+
+::: {.tiny}
+Zimmerleute und Tischler mit eigenem Werkzeug. Tafel aus „Arts et Métiers", 19. Jahrhundert (NYPL, gemeinfrei).
+:::
+:::
+:::
 
 ::: {.notes}
 Eigene Werkzeuge, Schablonen und Vorrichtungen waren Werkstattalltag: Für Einzelstücke gab es nichts von der Stange, und Geld war knapp. Veröffentlicht wurde trotzdem — Muster- und Modelbücher, Bauhüttenrisse, Maschinenbücher, Zimmermannsbücher. Genau das ist die Wurzel, auf die OSH sich beruft. Der Unterschied liegt nicht in der Haltung, sondern in drei fehlenden Dingen: nachbaubare Daten, ein Weg für Verbesserungen zurück, Rechtssicherheit. Nicht behaupten, Wissen sei nur mündlich gewesen.
+:::
+
+---
+
+## Ziele
+
+::: {.eyebrow}
+Was OHAWE erreichen will
+:::
+
+::: {.steps}
+::: {.}
+**Zwei Maschinen, die den Betrieben wirklich helfen:** Versiegelung im Fensterbau, Oberflächenbehandlung in der Restauration.
+:::
+::: {.}
+**Betriebe als Mitentwickelnde:** Anforderungen, Tests und Änderungen laufen über die Betriebe — nicht an ihnen vorbei.
+:::
+::: {.}
+**Vollständig offen dokumentiert:** Baupläne, Steuerung, Risikobeurteilung, Bedienungsanleitung unter offener Lizenz.
+:::
+::: {.}
+**Wissen zurück in OSHOP:** Design-Guide, Repo-Standards und Transferformate werden am harten Fall geprüft und geschärft.
+:::
+:::
+
+<div style="height:0.6em"></div>
+
+::: {.quote}
+Nicht drei Jahre Sondermaschine — sondern ein **nachbaubarer Baukasten** für Betriebe, die ähnliche Arbeit haben.
+:::
+
+::: {.notes}
+Ziele aus der Vorhabensbeschreibung, für dieses Publikum übersetzt: Es geht nicht um zwei Maschinen als Selbstzweck, sondern um den Nachweis, dass OSH im Handwerk funktioniert — technisch und organisatorisch. Der Rückfluss in den Verbund ist ausdrücklich Teil des Arbeitsplans (AP 6.2).
 :::
 
 ---
