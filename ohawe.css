@@ -152,7 +152,13 @@
 .reveal .two.hist-split > .pane:first-child { flex: 1.25; }
 .reveal .two.hist-split > .pane:last-child { flex: 1; }
 .reveal img.hist-img,
-.reveal img.hist-img.r-stretch { width: 100% !important; height: 400px !important; max-height: none !important; object-fit: cover; object-position: center 16%; display: block; }
+.reveal img.hist-img.r-stretch { width: 100% !important; height: 400px !important; max-height: none !important; object-fit: cover; object-position: center; display: block; }
+
+/* ---------- screenshot row ---------- */
+.reveal .shots { display: flex; gap: 0.6em; }
+.reveal .shots figure { flex: 1; margin: 0; }
+.reveal .shots img { width: 100% !important; height: 190px !important; max-height: none !important; object-fit: cover; display: block; }
+.reveal .shots .cap { display: block; font-size: 0.68em; color: #444; margin-top: 0.3em; }
 
 /* ---------- answer line ---------- */
 .reveal .answer { margin-top: 0.55em; border-left: 4px solid #EC6608; background: #FFF6EE; padding: 0.4em 0.6em; font-size: 0.78em; line-height: 1.3; }

@@ -191,10 +191,10 @@ Open Source Hardware hat eine lange Tradition. Was fehlte: **Maße, Rückfluss, 
 :::
 :::
 ::: {.pane}
-<img class="hist-img" src="img/tools.jpg" alt="Zimmerleute und Tischler mit ihrem Werkzeug" />
+<img class="hist-img" src="img/tools_top.jpg" alt="Handwerker bei der Arbeit mit eigenem Werkzeug" />
 
 ::: {.tiny}
-Zimmerleute und Tischler mit eigenem Werkzeug. Tafel aus „Arts et Métiers", 19. Jahrhundert (NYPL, gemeinfrei).
+Handwerker bei der Arbeit mit eigenem Werkzeug. Tafel aus „Arts et Métiers", 19. Jahrhundert (NYPL, gemeinfrei).
 :::
 :::
 :::
@@ -236,7 +236,7 @@ Ziele aus der Vorhabensbeschreibung, für dieses Publikum übersetzt: Es geht ni
 
 ---
 
-## Zwei Betriebe, zwei Aufgaben
+## Zwei Betriebe, Synergieeffekte nutzen
 
 ::: {.eyebrow}
 Und was wir dafür bauen
@@ -277,6 +277,34 @@ Beide Betriebe sind Projektpartner, nicht Anwender. Gebaut und erprobt wird im V
 
 ::: {.notes}
 Überblick, keine Konstruktionsdetails. Punkt: wir entwickeln keine Maschine von der Stange, sondern zwei sehr unterschiedliche Anwendungen — Retrofit und Neubau. Genau daran lernen wir, was übertragbar ist.
+:::
+
+---
+
+## Zwischenstand — Fokus auf Software
+
+::: {.eyebrow}
+KI findet den Fensterrahmen
+:::
+
+::: {.lead}
+Vor dem ersten Weg muss die Maschine wissen, wo der Rahmen anfängt: Wir erproben offene Segmentierungsmodelle an eigenen Aufnahmen.
+:::
+
+::: {.shots}
+<figure><img src="img/win6.png" alt="Ausgangsaufnahme eines ausgebauten Fensterrahmens" /><span class="cap">Ausgangsaufnahme</span></figure>
+<figure><img src="img/win6_gdinosam2.png" alt="Segmentierung mit Grounding DINO und SAM 2" /><span class="cap">Grounding DINO + SAM 2</span></figure>
+<figure><img src="img/seggpt_win6_overlay.png" alt="Segmentierung mit SegGPT" /><span class="cap">SegGPT</span></figure>
+:::
+
+<div style="height:0.4em"></div>
+
+::: {.quote}
+Noch Laborstand — aber der Schritt, an dem aus einer Werkzeugidee eine Maschine wird.
+:::
+
+::: {.notes}
+Zwischenstand aus der Software: Wir testen offene Modelle (Grounding DINO + SAM 2, SegGPT) darauf, den Fensterrahmen in der Aufnahme zu finden. Das ist die Voraussetzung für Bahnplanung und Dosierung. Ehrlich sagen: keine belastbaren Kennzahlen, das ist ein früher Versuch.
 :::
 
 ---
