@@ -14,9 +14,11 @@ GREY = RGBColor(0x55, 0x55, 0x55)
 prs = Presentation(SRC)
 # --- drop the 34 example slides, keep master + layouts ---
 sldIdLst = prs.slides._sldIdLst
-for sld in list(sldIdLst):
-    prs.part.drop_rel(sld.rId)
+ids = list(sldIdLst)
+for sld in ids:            # erst alle Verweise aus der Liste lösen ...
     sldIdLst.remove(sld)
+for sld in ids:            # ... dann die Beziehungen (entfernt die Teile)
+    prs.part.drop_rel(sld.rId)
 
 L = {n: i for i, l in enumerate(prs.slide_masters[0].slide_layouts) for n in [l.name]}
 
@@ -48,6 +50,7 @@ def set_text(placeholder, lines, size=16, bold_first=False):
         run.font.size = Pt(size)
         run.font.bold = bold or (bold_first and level == 0)
         run.font.name = "Open Sans"
+        run.font.color.rgb = RGBColor(0x00, 0x00, 0x00)
 
 
 def chrome(slide, number, footer="OHAWE · oSHOP-Strategiemeeting · Stefan Helmert", date="November 2026"):
@@ -63,6 +66,14 @@ def chrome(slide, number, footer="OHAWE · oSHOP-Strategiemeeting · Stefan Helm
         r.font.color.rgb = GREY
 
 
+def accent_last(placeholder):
+    """Last paragraph as orange statement line."""
+    para = placeholder.text_frame.paragraphs[-1]
+    for r in para.runs:
+        r.font.bold = True
+        r.font.color.rgb = ORANGE
+
+
 n = 0
 # 1 — Titelfolie mit Bild
 s = add("Titelfolie mit Bild")
@@ -75,14 +86,15 @@ set_text(ph(s, 10), [
     ("Hightech im Handwerk — offene Baupläne statt geschlossener Maschinen", 0, False),
     ("Werkstattprojekt OHAWE im T!Raum OSHOP", 1, False),
     ("Stefan Helmert · HTW Dresden", 1, False),
-], size=14)
-d = s.shapes.add_textbox(Emu(538163), Emu(5894863), Emu(1800000), Emu(288000))
-dr = d.text_frame.paragraphs[0].add_run()
-dr.text = "oSHOP-Strategiemeeting · November 2026"
-dr.font.size = Pt(11)
+], size=13)
 body_ph = ph(s, 10)
 if body_ph:
-    body_ph.width = Emu(2500000)
+    body_ph.left, body_ph.top = Emu(538163), Emu(4150000)
+    body_ph.width, body_ph.height = Emu(2900000), Emu(1600000)
+dt = s.shapes.add_textbox(Emu(538163), Emu(5894863), Emu(2200000), Emu(288000))
+dr = dt.text_frame.paragraphs[0].add_run()
+dr.text = "oSHOP-Strategiemeeting · November 2026"
+dr.font.size = Pt(11)
 dr.font.name = "Open Sans"
 
 # 2 — Hightech im Handwerk
@@ -94,8 +106,9 @@ set_text(ph(s, 13), [
     ("Zahntechnik: Ein Dentallabor fertigt 80 % digital, 300 gedruckte Modelle im Monat (Formlabs, 2024)", 0, False),
     ("Tischlerei: Müller rüstet 2025 auf 5-Achs-CNC um, für Einzelteil-Komplettbearbeitung (bm-online.de)", 0, False),
     ("Metallbau: Leipziger Handwerksbetrieb investiert 2022 in ein 5-Achs-Bearbeitungszentrum (aischmann.de)", 0, False),
-    ("Für kleine Betriebe oft unattraktiv: Komplexität, Kosten, mangelnde Flexibilität, fehlendes Wissen, geringe Stückzahlen.", 0, True),
+    ("Für kleine Betriebe oft unattraktiv: Komplexität, Kosten, mangelnde Flexibilität, fehlendes Wissen, geringe Stückzahlen.", 0, False),
 ], size=15)
+accent_last(ph(s, 13))
 chrome(s, n)
 
 # 3 — Automatisierungskrise
@@ -104,11 +117,12 @@ n += 1
 set_text(ph(s, 0), [("Das Handwerk steckt in der Automatisierungskrise", 0, True)], size=28)
 set_text(ph(s, 13), [
     ("56 % — der Betriebe nennen Fachkräftemangel als größte Herausforderung", 0, True),
-    ("−9,1 % — Tischlereibetriebe im Kammerbezirk Dresden seit 2020", 0, True),
+    ("9,1 % weniger Tischlereibetriebe im Kammerbezirk Dresden seit 2020", 0, True),
     ("76 % — investieren weniger als 5.000 € pro Jahr in Hard- und Software", 0, True),
     ("15 % — sehen steigenden Automatisierungs- und Digitalisierungsdruck", 0, True),
     ("Das Handwerk braucht unsere Unterstützung.", 0, False),
 ], size=18)
+accent_last(ph(s, 13))
 chrome(s, n)
 
 # 4 — Die Not machte erfinderisch
@@ -119,8 +133,9 @@ set_text(ph(s, 13), [
     ("1886/1892 — Rohrzange und verstellbarer Schraubenschlüssel: Mechaniker Johansson baut beides in seiner Werkstatt.", 0, False),
     ("1958 — Spreizdübel: Schlosser Artur Fischer feilt ihn in seiner Werkstatt (Patent DE 1 097 117).", 0, False),
     ("1958 — Kabelbinder: aus der Elektromontage, statt Binden mit Band und Draht.", 0, False),
-    ("Selbst bauen und selbst entwickeln war kein reiner Notbehelf — es war Selbstverständnis.", 0, True),
+    ("Selbst bauen und selbst entwickeln war kein reiner Notbehelf — es war Selbstverständnis.", 0, False),
 ], size=16)
+accent_last(ph(s, 13))
 chrome(s, n)
 
 # 5 — Werkzeuge bauen, Vorlagen nachbauen (Text links, Bild rechts)
@@ -131,8 +146,9 @@ set_text(ph(s, 13), [
     ("~1240 — Bauhüttenbuch des Villard de Honnecourt, zwischen Bauhütten weitergegeben. Skizzenbuch, kein Bauplan.", 0, False),
     ("1588 — Ramelli veröffentlicht 195 Maschinenentwürfe zum Nachbau. Kupferstiche ohne Maße.", 0, False),
     ("1731 — Schübler schreibt Zimmermannskunst „denen Zimmer-Leuten zum besten“.", 0, False),
-    ("Open Source Hardware hat eine lange Tradition. Was fehlte: Maße, Rückfluss, Lizenz.", 0, True),
+    ("Open Source Hardware hat eine lange Tradition. Was fehlte: Maße, Rückfluss, Lizenz.", 0, False),
 ], size=15)
+accent_last(ph(s, 13))
 p = ph(s, 15)
 if p:
     p.insert_picture(str(IMG / "tools_top.jpg"))
@@ -217,8 +233,9 @@ set_text(ph(s, 13), [
     ("direkte Absaugung am Bearbeitungskopf, mehrstufige Filterung", 0, False),
     ("Lackschicht abtragen, ohne das Holz zu verletzen", 0, False),
     ("Bedienung über ein Panel, Werkstück wird vorher vermessen", 0, False),
-    ("Kein Schleifstaub, keine Handarbeit über Stunden.", 0, True),
+    ("Kein Schleifstaub, keine Handarbeit über Stunden.", 0, False),
 ], size=15)
+accent_last(ph(s, 13))
 p = ph(s, 15)
 if p:
     p.insert_picture(str(IMG / "Lasergestützte Fensterrahmen-Aufbereitung.png"))
@@ -263,5 +280,7 @@ if gt:
                 para.font.name = "Open Sans"
 chrome(s, n)
 
+n_ids = len(prs.slides._sldIdLst)
+assert n_ids == len(prs.slides), f"sldIdLst ({n_ids}) != Folien ({len(prs.slides)})"
 prs.save(OUT)
 print("gespeichert:", OUT, len(prs.slides.__iter__.__self__._sldIdLst), "Folien")
