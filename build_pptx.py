@@ -16,11 +16,11 @@ SRC = "master oshop.pptx"
 OUT = "ohawe-strategie.pptx"
 IMG = Path("img")
 
-ORANGE = RGBColor(0xEC, 0x66, 0x08)
+ORANGE = RGBColor(0x23, 0x7C, 0x8F)
 BLACK = RGBColor(0x00, 0x00, 0x00)
 GREY = RGBColor(0x55, 0x55, 0x55)
 LIGHT = RGBColor(0xF6, 0xF6, 0xF6)
-PAPER = RGBColor(0xFF, 0xF6, 0xEE)
+PAPER = RGBColor(0xEA, 0xF5, 0xF7)
 HAIR = RGBColor(0xE6, 0xE6, 0xE6)
 
 FONT = "LM Mono 10"
@@ -128,10 +128,17 @@ n = 0
 # 1 — Titel
 s = slide()
 n += 1
-s.shapes.add_picture(str(IMG / "hero.png"), Emu(3240012), Emu(0), Emu(8951989), Emu(6858000))
-text(ML, 2100000, 2700000, 1200000, ["OHAWE"], size=52, bold=True, font=FONT_TITLE)
-text(ML, 3450000, 2600000, 1500000, ["Open Source Hardware im Handwerk:", "offene Baupläne statt geschlossener Maschinen"], size=15)
-text(ML, 4900000, 2600000, 900000, [
+PIC_X = 3550000
+s.shapes.add_picture(str(IMG / "hero.png"), Emu(PIC_X), Emu(0), Emu(W - PIC_X), Emu(H))
+# weiße Schräge: Bildkante läuft von oben rechts nach unten links aus
+ff = s.shapes.build_freeform(Emu(PIC_X), Emu(0) if False else 0)
+ff.add_line_segments([(Emu(PIC_X + 1750000), 0), (Emu(PIC_X), Emu(H)), (Emu(PIC_X), 0)], close=True)
+wedge = ff.convert_to_shape()
+wedge.fill.solid(); wedge.fill.fore_color.rgb = RGBColor(0xFF, 0xFF, 0xFF)
+wedge.line.fill.background(); wedge.shadow.inherit = False
+text(ML, 2100000, 2900000, 1200000, ["OHAWE"], size=52, bold=True, font=FONT_TITLE)
+text(ML, 3450000, 2950000, 1500000, ["Open Source Hardware im Handwerk:", "offene Baupläne statt geschlossener Maschinen"], size=15)
+text(ML, 4900000, 2950000, 900000, [
     ("Werkstattprojekt OHAWE im T!Raum OSHOP", 13, False, GREY),
     ("Stefan Helmert · HTW Dresden", 13, False, GREY),
 ], size=13)

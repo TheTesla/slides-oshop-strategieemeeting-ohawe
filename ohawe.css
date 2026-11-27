@@ -1,5 +1,5 @@
 /* OHAWE strategy deck — additions on top of htwd-theme.css
-   Keep the HTWD look: white, black text, orange #EC6608 as the only accent. */
+   Keep the HTWD look: white, black text, orange #237C8F as the only accent. */
 
 .reveal { font-size: 21px; }
 .reveal .slides > section {
@@ -9,7 +9,7 @@
 
 /* ---------- title slide ---------- */
 .reveal .slides > section:first-child { height: 720px; }
-.title-slide .ts-photo { background: #EC6608; width: 52%; }.title-slide .ts-photo img { height: 100%; width: 100%; object-fit: cover; }
+.title-slide .ts-photo { background: #237C8F; width: 52%; }.title-slide .ts-photo img { height: 100%; width: 100%; object-fit: cover; }
 .reveal .title-slide .ts-text { top: 24%; width: 46%; }
 .reveal .title-slide .ts-text h1 {
   font-size: 46px !important;
@@ -22,7 +22,7 @@
   font-weight: 700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: #EC6608;
+  color: #237C8F;
   margin-bottom: 1.1em;
 }
 .title-slide .ts-sub {
@@ -35,7 +35,7 @@
 .title-slide .ts-rule {
   width: 64px;
   height: 5px;
-  background: #EC6608;
+  background: #237C8F;
   margin: 1.4em 0 0 0;
 }
 .reveal .title-slide .ts-meta { font-size: 14px !important; bottom: 7%; width: 44%; }
@@ -46,7 +46,7 @@
   font-weight: 700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: #EC6608;
+  color: #237C8F;
   margin-bottom: 0.7em;
 }
 .reveal h2 { font-size: 1.55em; margin-bottom: 0.45em; }
@@ -62,7 +62,7 @@
 .reveal .card {
   flex: 1;
   background: #F6F6F6;
-  border-top: 4px solid #EC6608;
+  border-top: 4px solid #237C8F;
   padding: 0.7em 0.8em 0.8em 0.8em;
 }
 .reveal .card h3 { font-size: 0.86em; margin: 0.45em 0 0.3em 0; }
@@ -72,14 +72,14 @@
 
 /* ---------- stats ---------- */
 .reveal .stats { display: flex; gap: 1em; }
-.reveal .stat { flex: 1; border-left: 4px solid #EC6608; padding-left: 0.7em; }
-.reveal .stat b { display: block; font-size: 2.1em; font-weight: 700; line-height: 1; color: #EC6608; }
+.reveal .stat { flex: 1; border-left: 4px solid #237C8F; padding-left: 0.7em; }
+.reveal .stat b { display: block; font-size: 2.1em; font-weight: 700; line-height: 1; color: #237C8F; }
 .reveal .stat span { display: block; font-size: 0.68em; line-height: 1.3; color: #444; margin-top: 0.45em; }
 
 /* ---------- two columns ---------- */
 .reveal .two { display: flex; gap: 1.4em; }
 .reveal .two > div { flex: 1; }
-.reveal .two .pane { border-top: 4px solid #EC6608; padding-top: 0.7em; }
+.reveal .two .pane { border-top: 4px solid #237C8F; padding-top: 0.7em; }
 
 /* ---------- steps ---------- */
 .reveal .steps { display: flex; gap: 0.55em; counter-reset: st; }
@@ -90,7 +90,7 @@
   display: block;
   font-size: 1.5em;
   font-weight: 700;
-  color: #EC6608;
+  color: #237C8F;
   line-height: 1;
   margin-bottom: 0.35em;
 }
@@ -100,7 +100,7 @@
 .reveal .tl { display: flex; width: 100%; box-sizing: border-box; gap: 0.4em; margin: 1.1em 0 0.6em 0; font-size: 0.66em; }
 .reveal .tl .seg { flex-basis: 0; min-width: 0; border-top: 7px solid #DCDCDC; padding-top: 0.55em; padding-right: 0.4em; overflow-wrap: break-word; hyphens: auto; }
 .reveal .tl .seg.done { border-top-color: #111; }
-.reveal .tl .seg.now { border-top-color: #EC6608; }
+.reveal .tl .seg.now { border-top-color: #237C8F; }
 .reveal .tl .seg strong { display: block; font-size: 0.95em; line-height: 1.25; }
 .reveal .tl .seg em { font-style: normal; display: block; color: #7a7a7a; font-size: 0.9em; margin-top: 0.2em; }
 .reveal .tl-legend { display: flex; gap: 1.4em; font-size: 0.64em; color: #555; }
@@ -108,8 +108,8 @@
 
 /* ---------- quote / takeaway ---------- */
 .reveal .quote {
-  border-left: 5px solid #EC6608;
-  background: #FFF6EE;
+  border-left: 5px solid #237C8F;
+  background: #EAF5F7;
   padding: 0.65em 0.9em;
   font-size: 0.92em;
   line-height: 1.35;
@@ -125,23 +125,23 @@
 
 /* ---------- high-tech cases (slide 2) ---------- */
 .reveal .cases { display: flex; gap: 0.7em; }
-.reveal .hwcase { flex: 1; background: #F6F6F6; border-top: 4px solid #EC6608; padding: 0.6em 0.7em 0.65em; }
-.reveal .hwcase .trade { font-size: 0.62em; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #EC6608; }
+.reveal .hwcase { flex: 1; background: #F6F6F6; border-top: 4px solid #237C8F; padding: 0.6em 0.7em 0.65em; }
+.reveal .hwcase .trade { font-size: 0.62em; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #237C8F; }
 .reveal .hwcase p { font-size: 0.78em; line-height: 1.32; margin: 0.35em 0 0; }
 .reveal .hwcase .src { display: block; font-size: 0.66em; color: #555; margin-top: 0.45em; border-top: 1px solid #E2E2E2; padding-top: 0.35em; }
 .reveal .chainline { font-size: 0.72em; color: #555; margin-top: 0.55em; letter-spacing: 0.01em; }
 .reveal .reasons { display: flex; flex-wrap: wrap; gap: 0.4em; margin: 0.45em 0 0.2em; }
-.reveal .reasons span { background: #FFF6EE; border: 1px solid #E9B98C; padding: 0.24em 0.58em; font-size: 0.76em; }
+.reveal .reasons span { background: #EAF5F7; border: 1px solid #A8D2DB; padding: 0.24em 0.58em; font-size: 0.76em; }
 
 .reveal .hw-stats { display: flex; gap: 1.4em; margin: 0.1em 0 0.5em 0; }
-.reveal .hw-stat { border-left: 4px solid #EC6608; padding-left: 0.6em; }
-.reveal .hw-stat b { display: block; font-size: 1.5em; color: #EC6608; line-height: 1; }
+.reveal .hw-stat { border-left: 4px solid #237C8F; padding-left: 0.6em; }
+.reveal .hw-stat b { display: block; font-size: 1.5em; color: #237C8F; line-height: 1; }
 .reveal .hw-stat span { display: block; font-size: 0.68em; color: #444; line-height: 1.25; margin-top: 0.3em; max-width: 15em; }
 
 /* ---------- historical slide ---------- */
 .reveal .hist .ev { display: grid; grid-template-columns: 3.6em 1fr; column-gap: 0.7em; padding: 0.5em 0; border-bottom: 1px solid #ECECEC; }
 .reveal .hist .ev:last-child { border-bottom: 0; }
-.reveal .hist .yr { font-weight: 700; color: #EC6608; font-size: 0.95em; }
+.reveal .hist .yr { font-weight: 700; color: #237C8F; font-size: 0.95em; }
 .reveal .hist .src { font-size: 0.82em; line-height: 1.3; }
 .reveal .hist .src em { display: block; font-style: normal; color: #777; font-size: 0.82em; margin-top: 0.2em; }
 .reveal .two .pane > img { width: 100%; max-height: 290px; object-fit: cover; object-position: center 26%; display: block; }
@@ -167,7 +167,7 @@
 .reveal .shots .cap { display: block; font-size: 0.68em; color: #444; margin-top: 0.3em; }
 
 /* ---------- answer line ---------- */
-.reveal .answer { margin-top: 0.55em; border-left: 4px solid #EC6608; background: #FFF6EE; padding: 0.4em 0.6em; font-size: 0.78em; line-height: 1.3; }
+.reveal .answer { margin-top: 0.55em; border-left: 4px solid #237C8F; background: #EAF5F7; padding: 0.4em 0.6em; font-size: 0.78em; line-height: 1.3; }
 
 /* ---------- goals list ---------- */
 .reveal .goals { margin: 0.2em 0 0 0; }
@@ -179,22 +179,22 @@
 .reveal .chain .node {
   flex: 1;
   background: #F6F6F6;
-  border-top: 4px solid #EC6608;
+  border-top: 4px solid #237C8F;
   padding: 0.7em 0.75em;
   font-size: 0.86em;
   line-height: 1.28;
 }
-.reveal .chain .node .n { display: block; color: #EC6608; font-weight: 700; margin-bottom: 0.25em; }
-.reveal .chain .arrow { align-self: center; color: #EC6608; font-weight: 700; font-size: 1.3em; }
+.reveal .chain .node .n { display: block; color: #237C8F; font-weight: 700; margin-bottom: 0.25em; }
+.reveal .chain .arrow { align-self: center; color: #237C8F; font-weight: 700; font-size: 1.3em; }
 
 /* ---------- agenda ---------- */
 .reveal .ag { margin-top: 0.3em; }
 .reveal .ag .row { display: flex; align-items: baseline; gap: 0.9em; padding: 0.45em 0; border-bottom: 1px solid #EAEAEA; }
 .reveal .ag .row:last-child { border-bottom: 0; }
-.reveal .ag .nr { color: #EC6608; font-weight: 700; width: 1.3em; flex: none; }
+.reveal .ag .nr { color: #237C8F; font-weight: 700; width: 1.3em; flex: none; }
 .reveal .ag .txt { flex: 1; font-size: 0.92em; line-height: 1.25; }
 .reveal .ag .txt small { display: block; color: #7a7a7a; font-size: 0.72em; margin-top: 0.15em; }
-.reveal .ag .min { color: #EC6608; font-weight: 700; font-size: 0.78em; white-space: nowrap; }
+.reveal .ag .min { color: #237C8F; font-weight: 700; font-size: 0.78em; white-space: nowrap; }
 
 /* ---------- logos ---------- */
 .title-slide .ts-logo { display: flex; align-items: center; gap: 18px; }
@@ -206,7 +206,7 @@
 
 /* ---------- contact block ---------- */
 .reveal .contact { font-size: 0.9em; line-height: 1.6; }
-.reveal .contact a { color: #EC6608; text-decoration: none; }
+.reveal .contact a { color: #237C8F; text-decoration: none; }
 
 /* ---------- print / PDF export ---------- */
 @page { size: 1280px 720px; margin: 0; }
