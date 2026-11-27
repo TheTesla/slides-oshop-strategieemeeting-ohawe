@@ -11,6 +11,9 @@ from pptx.enum.shapes import MSO_SHAPE
 from pptx.oxml.ns import qn
 from lxml import etree
 from pathlib import Path
+import math
+
+PT = 12700
 
 SRC = "master oshop.pptx"
 OUT = "ohawe-strategie.pptx"
@@ -107,8 +110,13 @@ def card(x, y, w, h, fill=LIGHT):
     return shp
 
 
+def lines_for(txt, width, size):
+    per = max(12, int(width / (0.62 * size * PT)))
+    return max(1, math.ceil(len(txt) / per))
+
+
 def quote(paras, y=4820000, x=ML, w=CW, size=15):
-    h = 120000 * len(paras) + 260000
+    h = sum(lines_for(p if isinstance(p, str) else p[0], w - 320000, size) for p in paras) * 215000 + 300000
     box = prs.slides[-1].shapes.add_shape(MSO_SHAPE.RECTANGLE, Emu(x), Emu(y), Emu(w), Emu(h))
     box.fill.solid()
     box.fill.fore_color.rgb = PAPER
@@ -157,7 +165,9 @@ cases = [
 cw, gap = 3500000, 300000
 for i, (kopf, txt, src) in enumerate(cases):
     x = ML + i * (cw + gap)
-    card(x, BODY_Y + 240000, cw, 2100000)
+    h = (lines_for(txt, cw - 300000, 15) * 215000
+         + lines_for(src, cw - 300000, 10) * 145000 + 540000)
+    card(x, BODY_Y + 240000, cw, h)
     text(x + 150000, BODY_Y + 400000, cw - 300000, 1700000, [
         (kopf.upper(), 11, True, ORANGE, False), (txt, 15, False, BLACK, True), (src, 10, False, GREY, False),
     ], size=14, space=8)
@@ -255,13 +265,14 @@ for k, col in enumerate((left, right)):
         text(x, y, colw2, 560000, [txt], size=17 if bold else 15, bold=bold,
              color=ORANGE if bold else BLACK, bullet=not bold)
         y += 560000 if bold else 440000
-    box = s.shapes.add_shape(MSO_SHAPE.RECTANGLE, Emu(x), Emu(y + 140000), Emu(colw2), Emu(1150000))
-    box.fill.solid(); box.fill.fore_color.rgb = PAPER
-    box.line.fill.background(); box.shadow.inherit = False
-    bar(x, y + 140000, 46000, 1150000)
     antwort = ("Unsere Antwort: ein Werkzeug, das Dichtstoff dosiert aufträgt und abzieht." if k == 0
                else "Unsere Antwort: eine CNC-Maschine, die automatisch vermisst und den Lack mit Laser entfernt.")
-    text(x + 180000, y + 260000, colw2 - 320000, 880000, [antwort], size=14, bold=True, space=2)
+    ah = lines_for(antwort, colw2 - 320000, 14) * 200000 + 300000
+    box = s.shapes.add_shape(MSO_SHAPE.RECTANGLE, Emu(x), Emu(y + 140000), Emu(colw2), Emu(ah))
+    box.fill.solid(); box.fill.fore_color.rgb = PAPER
+    box.line.fill.background(); box.shadow.inherit = False
+    bar(x, y + 140000, 46000, ah)
+    text(x + 180000, y + 250000, colw2 - 320000, ah - 200000, [antwort], size=14, bold=True, space=2)
 footer(n)
 
 # 8 — Zwischenstand Software
