@@ -258,11 +258,13 @@ rows = [
 ]
 y = BODY_Y + 60000
 for idx, (jahr, fett, txt, kursiv) in enumerate(rows):
-    text(ML, y, 1400000, 620000, [jahr], size=16, bold=True, color=ACCENT, font=FONT_TITLE)
-    text(ML + 1500000, y, CW - 1500000, 620000, [{"runs": [(fett, True, False), (txt, False, False), (kursiv, False, True)]}], size=15)
+    h = lines_for(fett + txt + kursiv, CW - 1500000, 15) * 220000
+    text(ML, y, 1400000, h, [jahr], size=16, bold=True, color=ACCENT, font=FONT_TITLE)
+    text(ML + 1500000, y, CW - 1500000, h, [{"runs": [(fett, True, False), (txt, False, False), (kursiv, False, True)]}], size=15)
+    y += h + 90000
     if idx < len(rows) - 1:
-        bar(ML, y + 700000, CW, LINE, HAIR)
-    y += 850000
+        bar(ML, y, CW, LINE, HAIR)
+        y += 90000
 quote([{"runs": [("Selbst bauen und selbst entwickeln war kein reiner Notbehelf — es war ", True, False), ("Selbstverständnis", True, True), (".", True, False)]}], y=4820000)
 footer(n)
 
@@ -277,12 +279,14 @@ hist = [("~1240", "Bauhüttenbuch", " des Villard de Honnecourt — Risse und Ko
         ("1731", "Schübler", " schreibt Zimmermannskunst „denen Zimmer-Leuten zum besten“ — mit Tafeln für Dächer und Hängewerke.", "Lehrbuch mit Zielgruppe Handwerk")]
 y = BODY_Y + 60000
 for idx, (jahr, fett, txt, kursiv) in enumerate(hist):
-    text(ML, y, 950000, 560000, [jahr], size=15, bold=True, color=ACCENT, font=FONT_TITLE)
-    text(ML + 1000000, y, colw - 1000000, 560000, [{"runs": [(fett, True, False), (txt, False, False), (kursiv, False, True)]}], size=14)
+    h = lines_for(fett + txt + kursiv, colw - 1000000, 14) * 205000
+    text(ML, y, 950000, h, [jahr], size=15, bold=True, color=ACCENT, font=FONT_TITLE)
+    text(ML + 1000000, y, colw - 1000000, h, [{"runs": [(fett, True, False), (txt, False, False), (kursiv, False, True)]}], size=14)
+    y += h + 85000
     if idx < len(hist) - 1:
-        bar(ML, y + 610000, colw, LINE, HAIR)
-    y += 760000
-quote([{"runs": [("Open Source Hardware hat eine lange Tradition. Was fehlte: ", True, False), ("Maße, Rückfluss, Lizenz.", True, True)]}], y=y + 40000, w=colw)
+        bar(ML, y, colw, LINE, HAIR)
+        y += 85000
+quote([{"runs": [("Open Source Hardware hat eine lange Tradition. Was fehlte: ", True, False), ("Maße, Rückfluss, Lizenz.", True, True)]}], y=y + 60000, w=colw)
 px = ML + colw + 400000
 s.shapes.add_picture(str(IMG / "tools_top.jpg"), Emu(px), Emu(BODY_Y + 60000), Emu(W - px - ML), Emu(3800000))
 text(px, BODY_Y + 3950000, W - px - ML, 400000, ["Handwerker bei der Arbeit mit eigenem Werkzeug. Tafel aus „Arts et Métiers“, 19. Jahrhundert (NYPL, gemeinfrei)."], size=10, color=GREY)
