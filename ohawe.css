@@ -209,10 +209,14 @@
 .reveal .contact a { color: #EC6608; text-decoration: none; }
 
 /* ---------- print / PDF export ---------- */
+@page { size: 1280px 720px; margin: 0; }
 @media print {
+  .reveal .pdf-page > section { position: absolute !important; top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important; width: auto !important; height: auto !important; max-height: none !important; box-sizing: border-box; padding-bottom: 104px !important; }
   .reveal { font-size: 19px; }
-  .reveal .slides section { padding: 28px 44px 58px !important; }
-  .reveal .footer-bar { position: static; margin-top: 14px; border-top: 1px solid #DDD; }
+  .reveal .slides section { padding: 28px 44px 58px !important; position: relative; }
+  .reveal .pdf-page .footer-bar { position: absolute !important; left: 0 !important; right: 0 !important; bottom: 34px !important; height: 44px; margin: 0 !important; border-top: 1px solid #DDD; }
+  .reveal .title-slide .ts-meta { bottom: 34px !important; }
+  .reveal .meta-date { height: 44px; display: flex; align-items: center; margin: 2px 0 0 !important; }
   .reveal .tl { font-size: 0.58em; gap: 0.3em; }
   .reveal .tl .seg { padding-right: 0.25em; }
   .reveal .two .pane > img { height: 165px; max-height: none; }

@@ -1,286 +1,334 @@
-"""Builds the OHAWE strategy deck as PPTX on the HTWD master (master oshop.pptx)."""
-import copy
+"""OHAWE-Strategiedeck als PPTX auf dem HTWD-Master.
+
+Gestaltung wie die HTML-Fassung (Karten, Kennzahlen, Zitatbalken, Bildreihen),
+Typografie und Farben aus dem Master. Fußzeile sitzt auf jeder Folie gleich tief.
+"""
 from pptx import Presentation
 from pptx.util import Emu, Pt
 from pptx.dml.color import RGBColor
+from pptx.enum.text import PP_ALIGN
+from pptx.enum.shapes import MSO_SHAPE
+from pptx.oxml.ns import qn
+from lxml import etree
 from pathlib import Path
 
 SRC = "master oshop.pptx"
 OUT = "ohawe-strategie.pptx"
 IMG = Path("img")
+
 ORANGE = RGBColor(0xEC, 0x66, 0x08)
+BLACK = RGBColor(0x00, 0x00, 0x00)
 GREY = RGBColor(0x55, 0x55, 0x55)
+LIGHT = RGBColor(0xF6, 0xF6, 0xF6)
+PAPER = RGBColor(0xFF, 0xF6, 0xEE)
+HAIR = RGBColor(0xE6, 0xE6, 0xE6)
+
+FONT = "LM Mono 10"
+FONT_TITLE = "LM Mono Caps 10"
+
+W, H = 12192000, 6858000
+ML, CW = 538163, 11117262
+TITLE_Y, BODY_Y = 376211, 1796400
+FOOT_Y = 6539706
+NUM_X = 11116800
 
 prs = Presentation(SRC)
-# --- drop the 34 example slides, keep master + layouts ---
 sldIdLst = prs.slides._sldIdLst
 ids = list(sldIdLst)
-for sld in ids:            # erst alle Verweise aus der Liste lösen ...
-    sldIdLst.remove(sld)
-for sld in ids:            # ... dann die Beziehungen (entfernt die Teile)
-    prs.part.drop_rel(sld.rId)
+for s in ids:
+    sldIdLst.remove(s)
+for s in ids:
+    prs.part.drop_rel(s.rId)
 
-L = {n: i for i, l in enumerate(prs.slide_masters[0].slide_layouts) for n in [l.name]}
-
-
-def add(layout_name):
-    s = prs.slides.add_slide(prs.slide_masters[0].slide_layouts[L[layout_name]])
-    return s
+LAYOUT = {l.name: i for i, l in enumerate(prs.slide_masters[0].slide_layouts)}
 
 
-def ph(slide, idx):
-    for p in slide.placeholders:
-        if p.placeholder_format.idx == idx:
-            return p
-    return None
+def slide():
+    return prs.slides.add_slide(prs.slide_masters[0].slide_layouts[LAYOUT["Leer"]])
 
 
-def set_text(placeholder, lines, size=16, bold_first=False):
-    """lines: list of (text, level, bold) tuples or plain strings."""
-    tf = placeholder.text_frame
+def text(x, y, w, h, paras, size=15, color=BLACK, bold=False, font=FONT, space=6, align=PP_ALIGN.LEFT, bullet=False):
+    box = prs.slides[-1].shapes.add_textbox(Emu(x), Emu(y), Emu(w), Emu(h))
+    tf = box.text_frame
     tf.word_wrap = True
+    tf.margin_left = tf.margin_right = 0
+    tf.margin_top = tf.margin_bottom = 0
     first = True
-    for item in lines:
-        text, level, bold = (item, 0, False) if isinstance(item, str) else item
+    for item in paras:
+        if isinstance(item, tuple):
+            txt = item[0]
+            psize = item[1] if len(item) > 1 else None
+            pbold = item[2] if len(item) > 2 else None
+            pcolor = item[3] if len(item) > 3 else None
+            pbullet = item[4] if len(item) > 4 else bullet
+        else:
+            txt, psize, pbold, pcolor = item, None, None, None
+            pbullet = bullet
         p = tf.paragraphs[0] if first else tf.add_paragraph()
         first = False
-        p.level = level
-        run = p.add_run()
-        run.text = text
-        run.font.size = Pt(size)
-        run.font.bold = bold or (bold_first and level == 0)
-        run.font.name = "Open Sans"
-        run.font.color.rgb = RGBColor(0x00, 0x00, 0x00)
-
-
-def chrome(slide, number, footer="OHAWE · oSHOP-Strategiemeeting · Stefan Helmert", date="November 2026"):
-    """Date, footer and slide number as text boxes at the master's coordinates."""
-    for left, width, txt in ((1281600, 756000, date), (2126370, 8640000, footer), (11116800, 539750, str(number))):
-        p = ph(slide, 10 if left == 1281600 and slide.slide_layout.name.startswith("Titel") else None)
-        box = slide.shapes.add_textbox(Emu(left), Emu(6539706), Emu(width), Emu(180000))
-        tf = box.text_frame
-        tf.word_wrap = False
-        r = tf.paragraphs[0].add_run()
+        p.alignment = align
+        p.space_after = Pt(space)
+        if not pbullet:                      # Titel, Fußzeilen, Aussagen: kein Aufzählungsstrich
+            pPr = p._p.get_or_add_pPr()
+            pPr.set("marL", "0")
+            pPr.set("indent", "0")
+            etree.SubElement(pPr, qn("a:buNone"))
+        r = p.add_run()
         r.text = txt
-        r.font.size = Pt(10)
-        r.font.color.rgb = GREY
+        r.font.size = Pt(psize or size)
+        r.font.bold = bold if pbold is None else pbold
+        r.font.color.rgb = pcolor or color
+        r.font.name = font
+    return box
 
 
-def accent_last(placeholder):
-    """Last paragraph as orange statement line."""
-    para = placeholder.text_frame.paragraphs[-1]
-    for r in para.runs:
-        r.font.bold = True
-        r.font.color.rgb = ORANGE
+def title(txt, size=None):
+    if size is None:
+        size = 30 if len(txt) > 40 else 34
+    text(ML, TITLE_Y, CW - 300000, 950000, [txt], size=size, bold=True, font=FONT_TITLE)
+
+
+def bar(x, y, w, h=52000, color=ORANGE):
+    shp = prs.slides[-1].shapes.add_shape(MSO_SHAPE.RECTANGLE, Emu(x), Emu(y), Emu(w), Emu(h))
+    shp.fill.solid()
+    shp.fill.fore_color.rgb = color
+    shp.line.fill.background()
+    shp.shadow.inherit = False
+    return shp
+
+
+def card(x, y, w, h, fill=LIGHT):
+    shp = prs.slides[-1].shapes.add_shape(MSO_SHAPE.RECTANGLE, Emu(x), Emu(y), Emu(w), Emu(h))
+    shp.fill.solid()
+    shp.fill.fore_color.rgb = fill
+    shp.line.fill.background()
+    shp.shadow.inherit = False
+    bar(x, y, w)
+    return shp
+
+
+def quote(paras, y=4820000, x=ML, w=CW, size=15):
+    h = 120000 * len(paras) + 260000
+    box = prs.slides[-1].shapes.add_shape(MSO_SHAPE.RECTANGLE, Emu(x), Emu(y), Emu(w), Emu(h))
+    box.fill.solid()
+    box.fill.fore_color.rgb = PAPER
+    box.line.fill.background()
+    box.shadow.inherit = False
+    bar(x, y, 46000, h)
+    text(x + 180000, y + 110000, w - 320000, h - 180000, paras, size=size, bold=True, space=2)
+
+
+def footer(number, date="November 2026", line="OHAWE · oSHOP-Strategiemeeting · Stefan Helmert"):
+    text(1281600, FOOT_Y, 756000, 180000, [date], size=10, color=GREY)
+    text(2126370, FOOT_Y, 8600000, 180000, [line], size=10, color=GREY)
+    text(NUM_X, FOOT_Y, 539750, 180000, [str(number)], size=10, color=GREY)
 
 
 n = 0
-# 1 — Titelfolie mit Bild
-s = add("Titelfolie mit Bild")
+# 1 — Titel
+s = slide()
 n += 1
-pic = ph(s, 12)
-if pic:
-    pic.insert_picture(str(IMG / "hero.png"))
-set_text(ph(s, 0), [("OHAWE", 0, True)], size=44)
-set_text(ph(s, 10), [
-    ("Hightech im Handwerk — offene Baupläne statt geschlossener Maschinen", 0, False),
-    ("Werkstattprojekt OHAWE im T!Raum OSHOP", 1, False),
-    ("Stefan Helmert · HTW Dresden", 1, False),
+s.shapes.add_picture(str(IMG / "hero.png"), Emu(3240012), Emu(0), Emu(8951989), Emu(6858000))
+text(ML, 2100000, 2700000, 1200000, ["OHAWE"], size=52, bold=True, font=FONT_TITLE)
+text(ML, 3450000, 2600000, 1500000, ["Open Source Hardware im Handwerk:", "offene Baupläne statt geschlossener Maschinen"], size=15)
+text(ML, 4900000, 2600000, 900000, [
+    ("Werkstattprojekt OHAWE im T!Raum OSHOP", 13, False, GREY),
+    ("Stefan Helmert · HTW Dresden", 13, False, GREY),
 ], size=13)
-body_ph = ph(s, 10)
-if body_ph:
-    body_ph.left, body_ph.top = Emu(538163), Emu(4150000)
-    body_ph.width, body_ph.height = Emu(2900000), Emu(1600000)
-dt = s.shapes.add_textbox(Emu(538163), Emu(5894863), Emu(2200000), Emu(288000))
-dr = dt.text_frame.paragraphs[0].add_run()
-dr.text = "oSHOP-Strategiemeeting · November 2026"
-dr.font.size = Pt(11)
-dr.font.name = "Open Sans"
+text(1281600, FOOT_Y, 3000000, 180000, ["oSHOP-Strategiemeeting · November 2026"], size=10, color=GREY)
 
 # 2 — Hightech im Handwerk
-s = add("Titel und Inhalt")
 n += 1
-set_text(ph(s, 0), [("Hightech im Handwerk", 0, True)], size=30)
-set_text(ph(s, 13), [
-    ("Nicht nur Hammer und Feile: Handwerksbetriebe setzen moderne Fertigung ein — und zwar längst.", 0, False),
-    ("Zahntechnik: Ein Dentallabor fertigt 80 % digital, 300 gedruckte Modelle im Monat (Formlabs, 2024)", 0, False),
-    ("Tischlerei: Müller rüstet 2025 auf 5-Achs-CNC um, für Einzelteil-Komplettbearbeitung (bm-online.de)", 0, False),
-    ("Metallbau: Leipziger Handwerksbetrieb investiert 2022 in ein 5-Achs-Bearbeitungszentrum (aischmann.de)", 0, False),
-    ("Für kleine Betriebe oft unattraktiv: Komplexität, Kosten, mangelnde Flexibilität, fehlendes Wissen, geringe Stückzahlen.", 0, False),
-], size=15)
-accent_last(ph(s, 13))
-chrome(s, n)
+s = slide()
+title("Hightech im Handwerk")
+text(ML, BODY_Y - 420000, CW, 380000, ["Nicht nur Hammer und Feile: Betriebe setzen moderne Fertigung ein — und zwar längst."], size=16)
+cases = [
+    ("Zahntechnik", "Ein Dentallabor fertigt 80 % digital und druckt rund 300 Modelle im Monat.", "Quelle: dental.formlabs.com, 2024"),
+    ("Tischlerei", "Tischlerei Müller rüstet 2025 auf 5-Achs-CNC um, für Einzelteil-Komplettbearbeitung.", "Quelle: bm-online.de, 2025"),
+    ("Metallbau", "Leipziger Handwerksbetrieb investiert 2022 in ein 5-Achs-Bearbeitungszentrum.", "Quelle: aischmann.de"),
+]
+cw, gap = 3500000, 300000
+for i, (kopf, txt, src) in enumerate(cases):
+    x = ML + i * (cw + gap)
+    card(x, BODY_Y + 240000, cw, 2100000)
+    text(x + 150000, BODY_Y + 400000, cw - 300000, 1700000, [
+        (kopf.upper(), 11, True, ORANGE, False), (txt, 15, False, BLACK, True), (src, 10, False, GREY, False),
+    ], size=14, space=8)
+quote(["Für kleinere Betriebe oft unattraktiv: hohe Komplexität, hohe Investitionskosten, mangelnde Flexibilität, fehlendes Fachwissen, geringe Stückzahlen."], y=4820000)
+footer(n)
 
 # 3 — Automatisierungskrise
-s = add("Titel und Inhalt")
 n += 1
-set_text(ph(s, 0), [("Das Handwerk steckt in der Automatisierungskrise", 0, True)], size=28)
-set_text(ph(s, 13), [
-    ("56 % — der Betriebe nennen Fachkräftemangel als größte Herausforderung", 0, True),
-    ("9,1 % weniger Tischlereibetriebe im Kammerbezirk Dresden seit 2020", 0, True),
-    ("76 % — investieren weniger als 5.000 € pro Jahr in Hard- und Software", 0, True),
-    ("15 % — sehen steigenden Automatisierungs- und Digitalisierungsdruck", 0, True),
-    ("Das Handwerk braucht unsere Unterstützung.", 0, False),
-], size=18)
-accent_last(ph(s, 13))
-chrome(s, n)
+s = slide()
+title("Das Handwerk steckt in der Automatisierungskrise")
+stats = [("56 %", "der Betriebe nennen Fachkräftemangel als größte Herausforderung"),
+         ("9,1 %", "weniger Tischlereibetriebe im Kammerbezirk Dresden seit 2020"),
+         ("76 %", "investieren weniger als 5.000 € pro Jahr in Hard- und Software"),
+         ("15 %", "sehen steigenden Automatisierungs- und Digitalisierungsdruck")]
+sw, sgap = 2560000, 290000
+for i, (zahl, txt) in enumerate(stats):
+    x = ML + i * (sw + sgap)
+    bar(x, BODY_Y + 100000, 46000, 1250000)
+    text(x + 160000, BODY_Y + 90000, sw, 700000, [zahl], size=38, bold=True, color=ORANGE, font=FONT_TITLE)
+    text(x + 160000, BODY_Y + 780000, sw, 900000, [txt], size=15)
+quote(["Das Handwerk braucht unsere Unterstützung."], y=4820000)
+footer(n)
 
 # 4 — Die Not machte erfinderisch
-s = add("Titel und Inhalt")
 n += 1
-set_text(ph(s, 0), [("Die Not machte erfinderisch", 0, True)], size=30)
-set_text(ph(s, 13), [
-    ("1886/1892 — Rohrzange und verstellbarer Schraubenschlüssel: Mechaniker Johansson baut beides in seiner Werkstatt.", 0, False),
-    ("1958 — Spreizdübel: Schlosser Artur Fischer feilt ihn in seiner Werkstatt (Patent DE 1 097 117).", 0, False),
-    ("1958 — Kabelbinder: aus der Elektromontage, statt Binden mit Band und Draht.", 0, False),
-    ("Selbst bauen und selbst entwickeln war kein reiner Notbehelf — es war Selbstverständnis.", 0, False),
-], size=16)
-accent_last(ph(s, 13))
-chrome(s, n)
+s = slide()
+title("Die Not machte erfinderisch")
+rows = [("1886 / 1892", "Rohrzange und verstellbarer Schraubenschlüssel: Der Mechaniker Johan Petter Johansson baut beides in seiner Werkstatt, weil jede Mutter ein eigenes Werkzeug verlangte."),
+        ("1958", "Spreizdübel: Der Schlosser Artur Fischer feilt ihn in seiner Werkstatt, weil Schrauben im Mauerwerk nicht halten (Patent DE 1 097 117)."),
+        ("1958", "Kabelbinder: entsteht in der Elektromontage, statt Binden mit Band und Draht.")]
+y = BODY_Y + 40000
+for jahr, txt in rows:
+    text(ML, y, 1400000, 620000, [jahr], size=16, bold=True, color=ORANGE, font=FONT_TITLE)
+    text(ML + 1500000, y, CW - 1500000, 620000, [txt], size=15, bullet=True)
+    bar(ML, y + 700000, CW, 12000, HAIR)
+    y += 850000
+quote(["Selbst bauen und selbst entwickeln war kein reiner Notbehelf — es war Selbstverständnis."], y=4820000)
+footer(n)
 
-# 5 — Werkzeuge bauen, Vorlagen nachbauen (Text links, Bild rechts)
-s = add("Titel, Text, Bild rechts")
+# 5 — Werkzeuge bauen, Vorlagen nachbauen
 n += 1
-set_text(ph(s, 0), [("Werkzeuge bauen, Vorlagen nachbauen", 0, True)], size=28)
-set_text(ph(s, 13), [
-    ("~1240 — Bauhüttenbuch des Villard de Honnecourt, zwischen Bauhütten weitergegeben. Skizzenbuch, kein Bauplan.", 0, False),
-    ("1588 — Ramelli veröffentlicht 195 Maschinenentwürfe zum Nachbau. Kupferstiche ohne Maße.", 0, False),
-    ("1731 — Schübler schreibt Zimmermannskunst „denen Zimmer-Leuten zum besten“.", 0, False),
-    ("Open Source Hardware hat eine lange Tradition. Was fehlte: Maße, Rückfluss, Lizenz.", 0, False),
-], size=15)
-accent_last(ph(s, 13))
-p = ph(s, 15)
-if p:
-    p.insert_picture(str(IMG / "tools_top.jpg"))
-c = ph(s, 16)
-if c:
-    c.text_frame.text = "Handwerker bei der Arbeit mit eigenem Werkzeug · Tafel aus „Arts et Métiers“, 19. Jh. · NYPL, gemeinfrei"
+s = slide()
+title("Werkzeuge bauen, Vorlagen nachbauen")
+colw = 5200000
+hist = [("~1240", "Bauhüttenbuch des Villard de Honnecourt, zwischen Bauhütten weitergegeben. Skizzenbuch, kein Bauplan."),
+        ("1588", "Ramelli veröffentlicht 195 Maschinenentwürfe zum Nachbau. Kupferstiche ohne Maße."),
+        ("1731", "Schübler schreibt Zimmermannskunst „denen Zimmer-Leuten zum besten“.")]
+y = BODY_Y + 40000
+for jahr, txt in hist:
+    text(ML, y, 950000, 560000, [jahr], size=15, bold=True, color=ORANGE, font=FONT_TITLE)
+    text(ML + 1000000, y, colw - 1000000, 560000, [txt], size=14, bullet=True)
+    bar(ML, y + 610000, colw, 12000, HAIR)
+    y += 760000
+text(ML, y + 60000, colw, 700000, ["Open Source Hardware hat eine lange Tradition. Was fehlte: Maße, Rückfluss, Lizenz."], size=15, bold=True, color=ORANGE)
+px = ML + colw + 400000
+s.shapes.add_picture(str(IMG / "tools_top.jpg"), Emu(px), Emu(BODY_Y + 40000), Emu(W - px - ML), Emu(3800000))
+text(px, BODY_Y + 3950000, W - px - ML, 400000, ["Handwerker bei der Arbeit mit eigenem Werkzeug · Tafel aus „Arts et Métiers“, 19. Jh. · NYPL, gemeinfrei"], size=10, color=GREY)
+footer(n)
 
 # 6 — Ziele
-s = add("Titel und Inhalt")
 n += 1
-set_text(ph(s, 0), [("Ziele", 0, True)], size=30)
-set_text(ph(s, 13), [
-    ("Ziel ist OSH-Transferkompetenz im Handwerk: Betriebe sollen selbst finden, prüfen, nachbauen, anpassen und veröffentlichen können.", 0, False),
-    ("Lock-In-Effekte erkennen und vermeiden", 0, False),
-    ("Anwendung von OSH-Entwurfsmustern und -Paradigmen, um Barrieren zu senken", 0, False),
-    ("eigenständige Recherche geeigneter OSH-Teillösungen", 0, False),
-    ("Nachbau und Anpassung an die eigene Werkstatt", 0, False),
-    ("Veröffentlichung der eigenen Lösungen unter offener Lizenz", 0, False),
-    ("Kooperation mit anderen Handwerksbetrieben, Hochschulen und OSH-Community", 0, False),
-], size=16)
-chrome(s, n)
+s = slide()
+title("Ziele")
+text(ML, BODY_Y - 420000, CW, 460000, ["Ziel ist OSH-Transferkompetenz im Handwerk: Betriebe sollen selbst finden, prüfen, nachbauen, anpassen und veröffentlichen können."], size=16, bold=True)
+ziele = ["Lock-In-Effekte erkennen und vermeiden",
+         "Anwendung von OSH-Entwurfsmustern und -Paradigmen, um Barrieren zu senken",
+         "eigenständige Recherche geeigneter OSH-Teillösungen",
+         "Nachbau und Anpassung an die eigene Werkstatt",
+         "Veröffentlichung der eigenen Lösungen unter offener Lizenz",
+         "Kooperation mit anderen Handwerksbetrieben, Hochschulen und OSH-Community"]
+y = BODY_Y + 320000
+for z in ziele:
+    text(ML, y, CW, 480000, [z], size=16, bullet=True)
+    y += 460000
+quote(["Nicht drei Jahre Sondermaschine — sondern ein nachbaubarer Baukasten und die Fähigkeit, ihn zu nutzen."], y=4980000)
+footer(n)
 
-# 7 — Zwei Betriebe (zweispaltig)
-s = add("Titel und Inhalt zweispaltig")
+# 7 — Zwei Betriebe
 n += 1
-set_text(ph(s, 0), [("Zwei Betriebe, Synergieeffekte nutzen", 0, True)], size=28)
-left = [p for p in s.placeholders if p.placeholder_format.idx == 13][0]
-right = [p for p in s.placeholders if p.placeholder_format.idx == 14][0]
-set_text(left, [
-    ("Fensterbau König", 0, True),
-    ("Silikonfuge an Holzfenstern wird von Hand gezogen", 0, False),
-    ("monoton, fehleranfällig, jede Form braucht eine neue Handbewegung", 0, False),
-    ("Marktlösungen sind zu unflexibel und zu teuer", 0, False),
-    ("Unsere Antwort: Werkzeug, das Dichtstoff dosiert aufträgt und abzieht.", 0, False),
-], size=14)
-set_text(right, [
-    ("Restauration Pohl", 0, True),
-    ("alte Lackschichten werden von Hand abgetragen", 0, False),
-    ("das Grundmaterial darf dabei nicht verletzt werden", 0, False),
-    ("Staub und Dämpfe belasten, Erfahrungswissen geht in Rente", 0, False),
-    ("Unsere Antwort: CNC-Maschine, die vermisst und den Lack mit Laser entfernt.", 0, False),
-], size=14)
-chrome(s, n)
+s = slide()
+title("Zwei Betriebe, Synergieeffekte nutzen")
+colw2 = 5350000
+left = [("Fensterbau König", True),
+        ("Silikonfuge an Holzfenstern wird von Hand gezogen", False),
+        ("monoton, fehleranfällig, jede Form braucht eine neue Handbewegung", False),
+        ("Marktlösungen sind zu unflexibel und zu teuer", False)]
+right = [("Restauration Pohl", True),
+         ("alte Lackschichten werden von Hand abgetragen", False),
+         ("das Grundmaterial darf dabei nicht verletzt werden", False),
+         ("Staub und Dämpfe belasten, Erfahrungswissen geht in Rente", False)]
+for k, col in enumerate((left, right)):
+    x = ML + k * (colw2 + 400000)
+    y = BODY_Y + 40000
+    for txt, bold in col:
+        text(x, y, colw2, 560000, [txt], size=17 if bold else 15, bold=bold,
+             color=ORANGE if bold else BLACK, bullet=not bold)
+        y += 560000 if bold else 440000
+    box = s.shapes.add_shape(MSO_SHAPE.RECTANGLE, Emu(x), Emu(y + 140000), Emu(colw2), Emu(1150000))
+    box.fill.solid(); box.fill.fore_color.rgb = PAPER
+    box.line.fill.background(); box.shadow.inherit = False
+    bar(x, y + 140000, 46000, 1150000)
+    antwort = ("Unsere Antwort: ein Werkzeug, das Dichtstoff dosiert aufträgt und abzieht." if k == 0
+               else "Unsere Antwort: eine CNC-Maschine, die automatisch vermisst und den Lack mit Laser entfernt.")
+    text(x + 180000, y + 260000, colw2 - 320000, 880000, [antwort], size=14, bold=True, space=2)
+footer(n)
 
-# 8 — Zwischenstand Software (3 Bilder)
-s = add("Titel und Inhalt")
+# 8 — Zwischenstand Software
 n += 1
-set_text(ph(s, 0), [("Zwischenstand — Fokus auf Software", 0, True)], size=28)
-set_text(ph(s, 13), [
-    ("Die Maschine muss den Rahmen finden, bevor sie fährt: Wir erproben offene Segmentierungsmodelle.", 0, False),
-], size=16)
-x0, wdt, gap = 538163, 3400000, 340000
-top, hgt = 2300000, 2650000
-for i, (f, cap) in enumerate([("win6.png", "Ausgangsaufnahme"),
-                              ("win6_gdinosam2.png", "Grounding DINO + SAM 2"),
-                              ("seggpt_win6_overlay.png", "SegGPT")]):
-    s.shapes.add_picture(str(IMG / f), Emu(x0 + i * (wdt + gap)), Emu(top), width=Emu(wdt))
-    tb = s.shapes.add_textbox(Emu(x0 + i * (wdt + gap)), Emu(top + hgt + 40000), Emu(wdt), Emu(300000))
-    tf = tb.text_frame
-    tf.word_wrap = True
-    r = tf.paragraphs[0].add_run()
-    r.text = cap
-    r.font.size = Pt(11)
-    r.font.name = "Open Sans"
-    r.font.color.rgb = GREY
-tb = s.shapes.add_textbox(Emu(538163), Emu(6000000), Emu(11117262), Emu(400000))
-r = tb.text_frame.paragraphs[0].add_run()
-r.text = "Noch Laborstand — aber der Schritt von der Werkzeugidee zur Maschine."
-r.font.size = Pt(14)
-r.font.name = "Open Sans"
-r.font.bold = True
-r.font.name = "Open Sans"
-r.font.color.rgb = ORANGE
-chrome(s, n)
+s = slide()
+title("Zwischenstand — Fokus auf Software")
+text(ML, BODY_Y - 420000, CW, 380000, ["Die Maschine muss den Rahmen finden, bevor sie fährt: Wir erproben offene Segmentierungsmodelle."], size=16)
+shots = [("win6.png", "Ausgangsaufnahme"), ("win6_gdinosam2.png", "Grounding DINO + SAM 2"), ("seggpt_win6_overlay.png", "SegGPT")]
+bw, bgap = 3500000, 300000
+for i, (f, cap) in enumerate(shots):
+    x = ML + i * (bw + bgap)
+    s.shapes.add_picture(str(IMG / f), Emu(x), Emu(BODY_Y + 240000), Emu(bw), Emu(2650000))
+    text(x, BODY_Y + 2960000, bw, 280000, [cap], size=11, color=GREY)
+quote(["Noch Laborstand — aber der Schritt von der Werkzeugidee zur Maschine."], y=5040000)
+footer(n)
 
 # 9 — Endergebnis
-s = add("Titel, Text, Bild rechts")
 n += 1
-set_text(ph(s, 0), [("Endergebnis (Bsp. Pohl, Laserlackentfernung)", 0, True)], size=26)
-set_text(ph(s, 13), [
-    ("geschlossene Sicherheitszelle mit getöntem Laserschutzglas", 0, False),
-    ("direkte Absaugung am Bearbeitungskopf, mehrstufige Filterung", 0, False),
-    ("Lackschicht abtragen, ohne das Holz zu verletzen", 0, False),
-    ("Bedienung über ein Panel, Werkstück wird vorher vermessen", 0, False),
-    ("Kein Schleifstaub, keine Handarbeit über Stunden.", 0, False),
-], size=15)
-accent_last(ph(s, 13))
-p = ph(s, 15)
-if p:
-    p.insert_picture(str(IMG / "Lasergestützte Fensterrahmen-Aufbereitung.png"))
-c = ph(s, 16)
-if c:
-    c.text_frame.text = "Konzeptdarstellung der Anlage — Stand vor dem Aufbau"
+s = slide()
+title("Endergebnis (Bsp. Pohl, Laserlackentfernung)")
+colw3 = 5000000
+punkte = ["geschlossene Sicherheitszelle mit getöntem Laserschutzglas",
+          "direkte Absaugung am Bearbeitungskopf, mehrstufige Filterung",
+          "Lackschicht abtragen, ohne das Holz zu verletzen",
+          "Bedienung über ein Panel, Werkstück wird vorher vermessen"]
+y = BODY_Y + 40000
+for p_ in punkte:
+    text(ML, y, colw3, 480000, [p_], size=15, bullet=True)
+    y += 400000
+px = ML + colw3 + 380000
+s.shapes.add_picture(str(IMG / "Lasergestützte Fensterrahmen-Aufbereitung.png"), Emu(px), Emu(BODY_Y + 40000), Emu(W - px - ML), Emu(3800000))
+text(px, BODY_Y + 3950000, W - px - ML, 400000, ["Konzeptdarstellung der Anlage — Stand vor dem Aufbau"], size=10, color=GREY)
+quote(["Kein Schleifstaub, keine Handarbeit über Stunden."], y=5060000, w=colw3)
+footer(n)
 
-# 10 — Schlussfolie
-s = add("Schlussfolie 1")
+# 10 — Danke
 n += 1
-set_text(ph(s, 0), [("Danke — Diskussion", 0, True)], size=30)
-set_text(ph(s, 13), [
-    ("Stefan Helmert · Professur Informationsmanagement", 0, True),
-    ("Fakultät Informatik / Mathematik, HTW Dresden", 0, False),
-    ("stefan.helmert@htw-dresden.de", 0, False),
-    ("Projekt OHAWE · T!Raum OSHOP · Laufzeit 03/2026–02/2029", 0, False),
-], size=14)
+s = slide()
+title("Danke — Diskussion")
+text(ML, BODY_Y + 600000, 5200000, 2100000, [
+    ("Stefan Helmert · Professur Informationsmanagement", 17, True, ORANGE),
+    ("Fakultät Informatik / Mathematik, HTW Dresden", 15, False, BLACK),
+    ("stefan.helmert@htw-dresden.de", 15, False, BLACK),
+    ("Projekt OHAWE · T!Raum OSHOP · Laufzeit 03/2026–02/2029", 13, False, GREY),
+], size=15, space=10)
+text(ML, 4700000, 8000000, 500000, ["Ein Werkstattprojekt im T!Raum OSHOP. Gefördert im Rahmen der Fördermaßnahme „T!Raum — TransferRäume für die Zukunft von Regionen“ des BMBF im Programm „Innovation & Strukturwandel“. Ergebnisse werden unter offener Lizenz veröffentlicht."], size=10, color=GREY)
+footer(n)
 
 # 11 — Backup Tabelle
-s = add("Tabelle")
 n += 1
-set_text(ph(s, 0), [("Backup: Partner und Rollen", 0, True)], size=26)
+s = slide()
+title("Backup: Partner und Rollen")
 rows = [("Partner", "Rolle im Projekt"),
         ("HTW Dresden, Professur Informationsmanagement", "Koordination, FuE, Aufbau und Erprobung der Demonstratoren, Dokumentation, Zertifizierung"),
         ("Tischlerei Pohl, Ebersbach-Neugersdorf", "Anforderungen an Lackentfernung, Versuchsergebnisse/Parameter Laser-Lackentfernung, Gefährdungsbeurteilung"),
         ("Tischlerei König, Rammenau", "Fensterbau, stellt die vorhandene Maschine, Anforderungsmanagement, Erprobung (assoziiert)"),
         ("Handwerkskammer Dresden", "Multiplikator in ~21.000 Betriebe, gemeinsame Veranstaltungen mit OSHOP")]
-tbl_ph = ph(s, 14)
-gt = tbl_ph.insert_table(rows=len(rows), cols=2).table if tbl_ph else None
-if gt:
-    gt.columns[0].width = Emu(4300000)
-    gt.columns[1].width = Emu(6600000)
-if gt:
-    for r_i, (a, b) in enumerate(rows):
-        for c_i, val in enumerate((a, b)):
-            cell = gt.cell(r_i, c_i)
-            cell.text = val
-            for para in cell.text_frame.paragraphs:
-                para.font.size = Pt(11 if r_i else 11)
-                para.font.name = "Open Sans"
-                para.font.bold = r_i == 0
-                para.font.name = "Open Sans"
-chrome(s, n)
+shape = s.shapes.add_table(len(rows), 2, Emu(ML), Emu(BODY_Y), Emu(CW), Emu(2500000))
+tbl = shape.table
+tbl.columns[0].width = Emu(4300000)
+tbl.columns[1].width = Emu(6800000)
+for ri, (a, b) in enumerate(rows):
+    for ci, val in enumerate((a, b)):
+        cell = tbl.cell(ri, ci)
+        cell.text = val
+        cell.fill.solid()
+        cell.fill.fore_color.rgb = RGBColor(0x11, 0x11, 0x11) if ri == 0 else RGBColor(0xFF, 0xFF, 0xFF)
+        for p_ in cell.text_frame.paragraphs:
+            p_.font.size = Pt(12)
+            p_.font.bold = ri == 0
+            p_.font.name = FONT
+            p_.font.color.rgb = RGBColor(0xFF, 0xFF, 0xFF) if ri == 0 else BLACK
+footer(n)
 
-n_ids = len(prs.slides._sldIdLst)
-assert n_ids == len(prs.slides), f"sldIdLst ({n_ids}) != Folien ({len(prs.slides)})"
+assert len(prs.slides._sldIdLst) == len(prs.slides), "Folienliste inkonsistent"
 prs.save(OUT)
-print("gespeichert:", OUT, len(prs.slides.__iter__.__self__._sldIdLst), "Folien")
+print("gespeichert:", OUT, len(prs.slides), "Folien")
