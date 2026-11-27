@@ -25,7 +25,8 @@ GREY = RGBColor(0x55, 0x55, 0x55)
 LIGHT = RGBColor(0xF6, 0xF6, 0xF6)
 PAPER = RGBColor(0xEA, 0xF5, 0xF7)
 BORDER = RGBColor(0xA8, 0xD2, 0xDB)
-HAIR = RGBColor(0xE6, 0xE6, 0xE6)
+HAIR = RGBColor(0xEC, 0xEC, 0xEC)
+LINE = 9525  # 1 px
 WHITE = RGBColor(0xFF, 0xFF, 0xFF)
 
 FONT = "LM Mono 10"
@@ -167,10 +168,10 @@ n = 0
 # 1 — Titel (wie die HTML-Vorlage: Logos, Kicker, Titel, Unterzeile, Regel, Metazeile)
 s = slide()
 n += 1
-PIC_X = 3550000
+PIC_X = 5850240            # 48 % der Folienbreite wie .ts-photo
 s.shapes.add_picture(str(IMG / "hero.png"), Emu(PIC_X), Emu(0), Emu(W - PIC_X), Emu(H))
 ff = s.shapes.build_freeform(Emu(PIC_X), 0)
-ff.add_line_segments([(Emu(PIC_X + 1750000), 0), (Emu(PIC_X), Emu(H)), (Emu(PIC_X), 0)], close=True)
+ff.add_line_segments([(Emu(PIC_X + 2408729), 0), (Emu(PIC_X), Emu(H)), (Emu(PIC_X), 0)], close=True)
 wedge = ff.convert_to_shape()
 wedge.fill.solid(); wedge.fill.fore_color.rgb = WHITE
 wedge.line.fill.background(); wedge.shadow.inherit = False
@@ -181,7 +182,7 @@ text(ML, 1450000, 3700000, 300000, ["Werkstattprojekt im T!Raum OSHOP"], size=12
      color=ACCENT, font=FONT_TITLE, spacing=160)
 text(ML, 1750000, 2950000, 900000, ["OHAWE"], size=54, bold=True, font=FONT_TITLE)
 text(ML, 2700000, 3900000, 900000, ["Open Source Hardware im Handwerk —", "Selbstsouveränität der deutschen Wirtschaft"], size=14)
-bar(ML, 3580000, 900000, 30000)
+bar(ML, 3580000, 609600, 47625)
 text(ML, 3900000, 3600000, 900000, [
     ("Stefan Helmert", 15, True, BLACK),
     ("Fakultät Informatik / Mathematik, HTW Dresden", 13, False, GREY),
@@ -256,10 +257,11 @@ rows = [
     ("1958", "Kabelbinder", " — aus der Elektromontage, statt Binden mit Band und Draht.", "heute in jedem Werkzeugkoffer"),
 ]
 y = BODY_Y + 60000
-for jahr, fett, txt, kursiv in rows:
+for idx, (jahr, fett, txt, kursiv) in enumerate(rows):
     text(ML, y, 1400000, 620000, [jahr], size=16, bold=True, color=ACCENT, font=FONT_TITLE)
     text(ML + 1500000, y, CW - 1500000, 620000, [{"runs": [(fett, True, False), (txt, False, False), (kursiv, False, True)]}], size=15)
-    bar(ML, y + 700000, CW, 12000, HAIR)
+    if idx < len(rows) - 1:
+        bar(ML, y + 700000, CW, LINE, HAIR)
     y += 850000
 quote([{"runs": [("Selbst bauen und selbst entwickeln war kein reiner Notbehelf — es war ", True, False), ("Selbstverständnis", True, True), (".", True, False)]}], y=4820000)
 footer(n)
@@ -274,10 +276,11 @@ hist = [("~1240", "Bauhüttenbuch", " des Villard de Honnecourt — Risse und Ko
         ("1588", "Ramelli", " veröffentlicht 195 Maschinenentwürfe — zum Nachbau, für Bauherren und Handwerker.", "Kupferstiche ohne Maße"),
         ("1731", "Schübler", " schreibt Zimmermannskunst „denen Zimmer-Leuten zum besten“ — mit Tafeln für Dächer und Hängewerke.", "Lehrbuch mit Zielgruppe Handwerk")]
 y = BODY_Y + 60000
-for jahr, fett, txt, kursiv in hist:
+for idx, (jahr, fett, txt, kursiv) in enumerate(hist):
     text(ML, y, 950000, 560000, [jahr], size=15, bold=True, color=ACCENT, font=FONT_TITLE)
     text(ML + 1000000, y, colw - 1000000, 560000, [{"runs": [(fett, True, False), (txt, False, False), (kursiv, False, True)]}], size=14)
-    bar(ML, y + 610000, colw, 12000, HAIR)
+    if idx < len(hist) - 1:
+        bar(ML, y + 610000, colw, LINE, HAIR)
     y += 760000
 quote([{"runs": [("Open Source Hardware hat eine lange Tradition. Was fehlte: ", True, False), ("Maße, Rückfluss, Lizenz.", True, True)]}], y=y + 40000, w=colw)
 px = ML + colw + 400000
@@ -323,6 +326,7 @@ right = ("Restauration Pohl",
 for k, (kopf, punkte, antwort) in enumerate((left, right)):
     x = ML + k * (colw2 + 400000)
     y = BODY_Y + 60000
+    bar(x, y - 120000, colw2, 38100)
     text(x, y, colw2, 480000, [kopf], size=17, bold=True, color=ACCENT)
     y += 560000
     for p_ in punkte:
@@ -363,6 +367,7 @@ punkte = ["geschlossene Sicherheitszelle mit getöntem Laserschutzglas",
           "Lackschicht abtragen, ohne das Holz zu verletzen",
           "Bedienung über ein Panel, Werkstück wird vorher vermessen"]
 y = BODY_Y + 60000
+bar(ML, y - 120000, colw3, 38100)
 for p_ in punkte:
     text(ML, y, colw3, 480000, [p_], size=15, bullet=True)
     y += 440000
@@ -426,4 +431,26 @@ footer(n)
 
 assert len(prs.slides._sldIdLst) == len(prs.slides), "Folienliste inkonsistent"
 prs.save(OUT)
+
+
+def normal_view(path):
+    """lastView im Paket auf die normale Ansicht setzen (PowerPoint oeffnet sonst im Master)."""
+    import re, shutil, zipfile
+    tmp = str(path) + ".tmp"
+    with zipfile.ZipFile(path) as zin, zipfile.ZipFile(tmp, "w", zipfile.ZIP_DEFLATED) as zout:
+        for item in zin.infolist():
+            data = zin.read(item.filename)
+            if item.filename == "ppt/viewProps.xml":
+                if b"lastView=" in data:
+                    data = re.sub(rb'lastView="[^"]*"', b'lastView="sldView"', data)
+                else:
+                    data = data.replace(b"<p:viewPr ", b'<p:viewPr lastView="sldView" ', 1)
+                # ohne preferSingleView oeffnet PowerPoint die Datei in der Masteransicht
+                data = data.replace(b'<p:normalViewPr horzBarState="maximized"',
+                                    b'<p:normalViewPr horzBarState="maximized" preferSingleView="1"')
+            zout.writestr(item, data)
+    shutil.move(tmp, str(path))
+
+
+normal_view(OUT)
 print("gespeichert:", OUT, len(prs.slides), "Folien")
